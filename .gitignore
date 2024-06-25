@@ -1,0 +1,79 @@
+# Visual Studio / .NET specific
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+*.dll
+*.exe
+*.pdb
+*.userprefs
+*.bak
+*.vscode/
+*.idea/
+*.ncrunch*
+*.DS_Store
+
+# NuGet packages
+*.nuget.props
+*.nuget.targets
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# MonoDevelop
+*.pidb
+*.userprefs
+
+# Xamarin-specific
+*.xccheckout
+*.xcuserstate
+
+# Unity3D generated files
+Library/
+Temp/
+Build/
+*.unitypackage
+
+# ReSharper
+_ReSharper*/
+
+# Rider
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows image file caches
+Thumbs.db
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
