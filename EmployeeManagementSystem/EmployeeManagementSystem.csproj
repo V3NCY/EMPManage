@@ -58,15 +58,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEmployeesWindow.xaml.cs">
+      <DependentUpon>AddEmployeesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ArchiveListWindow.xaml.cs">
+      <DependentUpon>ArchiveListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeListWindow.xaml.cs">
+      <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtherLeaveWindow.xaml.cs">
       <DependentUpon>OtherLeaveWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PaidLeaveWindow.xaml.cs">
       <DependentUpon>PaidLeaveWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PersonalFilesWindow.xaml.cs">
+      <DependentUpon>PersonalFilesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SickLeaveWindow.xaml.cs">
       <DependentUpon>SickLeaveWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddEmployeesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ArchiveListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PaidLeaveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalFilesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
