@@ -82,7 +82,34 @@ namespace EmployeeManagementSystem
         {
             EmployeesPopup.IsOpen = false;
         }
+        private void CarsToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CarsPopup.IsOpen = true;
+        }
 
+        private void CarsToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CarsPopup.IsOpen = false;
+        }
+
+        private void OnAddVehicleButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddVehicleWindow addVehicleWindow = new AddVehicleWindow();
+            addVehicleWindow.ShowDialog();
+        }
+
+        private void OnVehicleListButtonClick(object sender, RoutedEventArgs e)
+        {
+            VehicleListWindow vehicleListWindow = new VehicleListWindow();
+            vehicleListWindow.ShowDialog();
+        }
+
+        private void OnVehicleArchiveListButtonClick(object sender, RoutedEventArgs e)
+        {
+            ArchiveVehicleWindow archiveVehicleWindow = new ArchiveVehicleWindow();
+            archiveVehicleWindow.ShowDialog();
+        }
+        
         private void CloseAllPopups()
         {
             DocumentsPopup.IsOpen = false;

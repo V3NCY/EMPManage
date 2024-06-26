@@ -98,6 +98,40 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="ToggleButton" x:Key="CarsToggleButtonStyle">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="165"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="145,18,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Image Source="Assets/worldwidemap.png" Stretch="Uniform"/>
@@ -127,6 +161,18 @@
                             <Button Content="Списък служители" Click="OnEmployeeListButtonClick" Margin="0,5"/>
                             <Button Content="Архив служители" Click="OnArchiveListButtonClick" Margin="0,5"/>
                             <Button Content="Досиета" Click="OnPersonalFilesButtonClick" Margin="0,5"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+                <!-- Main Button - Aвтомобили -->
+                <ToggleButton x:Name="CarsToggleButton" Content="Автомобили" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CarsToggleButtonStyle}" Checked="CarsToggleButton_Checked" />
+                <!-- Popup - Добави, Списък, Архив -->
+                <Popup x:Name="CarsPopup" PlacementTarget="{Binding ElementName=CarsToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
+                        <StackPanel>
+                            <Button Content="Добави автомобил" Click="OnAddVehicleButtonClick" Margin="0,5"/>
+                            <Button Content="Списък с автомобили" Click="OnVehicleListButtonClick" Margin="0,5"/>
+                            <Button Content="Архив автомобили" Click="OnVehicleArchiveListButtonClick" Margin="0,5"/>
                         </StackPanel>
                     </Border>
                 </Popup>
