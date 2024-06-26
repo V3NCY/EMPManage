@@ -45,7 +45,7 @@
 
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <ListView Name="lvCars" SelectionChanged="lvCars_SelectionChanged">
+            <ListView Name="lvVehicles" SelectionChanged="lvVehicles_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="50"/>

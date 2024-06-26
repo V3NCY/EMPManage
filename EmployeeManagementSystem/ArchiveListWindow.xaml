@@ -5,8 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="Архив на служители" Height="450" Width="800">
+        Title="Архив на служители" WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#073763"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="0,1,0,0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <ListView Name="lvArchivedEmployees" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID"  Width="50"/>
+                        <GridViewColumn Header="Име на служител" Width="200"/>
+                        <GridViewColumn Header="Длъжност"  Width="200"/>
+                        <GridViewColumn Header="Отдел"  Width="200"/>
+                        <GridViewColumn Header="Оставащи дни от отпуска" Width="200"/>
+                        <GridViewColumn Header="Платен отпуск"  Width="200"/>
+                        <GridViewColumn Header="Неплатен отпуск"  Width="200"/>
+                        <GridViewColumn Header="Друг отпуск"  Width="200"/>
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete" Click="OnDeleteEmployeeMenuItemClick"/>
+                        <MenuItem Header="Delete All Items" Click="OnDeleteAllItemsClick"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </ScrollViewer>
+        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Click="OnRefreshButtonClick"/>
     </Grid>
 </Window>

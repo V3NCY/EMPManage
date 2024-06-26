@@ -46,6 +46,7 @@ namespace EmployeeManagementSystem
             EmployeesToggleButton.IsChecked = false;
         }
 
+        // Archive Employee Management Buttons
         private void OnArchiveListButtonClick(object sender, RoutedEventArgs e)
         {
             ArchiveListWindow archiveListWindow = new ArchiveListWindow();
@@ -82,16 +83,18 @@ namespace EmployeeManagementSystem
         {
             EmployeesPopup.IsOpen = false;
         }
-        private void CarsToggleButton_Checked(object sender, RoutedEventArgs e)
+
+        // Employee Management Buttons
+        private void VehiclesToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            CarsPopup.IsOpen = true;
+            VehiclesPopup.IsOpen = true;
         }
 
-        private void CarsToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void VehiclesToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            CarsPopup.IsOpen = false;
+            VehiclesPopup.IsOpen = false;
         }
-
+        // Vehicles Buttons
         private void OnAddVehicleButtonClick(object sender, RoutedEventArgs e)
         {
             AddVehicleWindow addVehicleWindow = new AddVehicleWindow();
@@ -109,7 +112,18 @@ namespace EmployeeManagementSystem
             ArchiveVehicleWindow archiveVehicleWindow = new ArchiveVehicleWindow();
             archiveVehicleWindow.ShowDialog();
         }
-        
+        //References Buttons
+
+        private void ReferencesToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ReferencesPopup.IsOpen = true;
+        }
+
+        private void OnAddReferenceButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddReferenceWindow addReferenceWindow = new AddReferenceWindow();
+            addReferenceWindow.ShowDialog();
+        }
         private void CloseAllPopups()
         {
             DocumentsPopup.IsOpen = false;

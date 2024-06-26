@@ -1,0 +1,51 @@
+﻿<Window x:Class="EmployeeManagementSystem.AddReferenceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добави справка" Height="430" Width="600">
+    <Window.Resources>
+        <Style TargetType="Button">
+        <Setter Property="Background" Value="#073763"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    </Window.Resources>
+    <Grid Margin="20">
+        <!-- Dropdown for reference selection -->
+        <ComboBox x:Name="ReferenceTypeComboBox" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <ComboBoxItem IsEnabled="False">--- Избери вид справка ---</ComboBoxItem>
+            <ComboBoxItem Content="Фактури"/>
+            <ComboBoxItem Content="Проформи"/>
+            <ComboBoxItem Content="Платени отпуски"/>
+            <ComboBoxItem Content="Болнични"/>
+            <ComboBoxItem Content="Друг вид отпуски"/>
+            <ComboBoxItem Content="Молби"/>
+            <ComboBoxItem Content="Документи (*)"/>
+            <ComboBoxItem Content="Списък служители"/>
+            <ComboBoxItem Content="Архив служители"/>
+            <ComboBoxItem Content="Списък автомобили"/>
+            <ComboBoxItem Content="Архив автомобили"/>
+        </ComboBox>
+
+        <!-- Calendar for period selection -->
+        <Calendar x:Name="PeriodCalendar" HorizontalAlignment="Right" VerticalAlignment="Top" />
+
+        <!-- Additional checkboxes -->
+        <StackPanel Margin="0 40">
+            <CheckBox x:Name="CheckBox1" Content="Box 1" Margin="0,5"/>
+            <CheckBox x:Name="CheckBox2" Content="Box 2" Margin="0,5"/>
+            <CheckBox x:Name="CheckBox3" Content="Box 3" Margin="0,5"/>
+            <Button Content="Изтегли справка" Width="140" Margin="10 100" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+            
+        </StackPanel>
+
+
+        <!-- Buttons for actions (e.g., Save, Cancel) -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,20,10">
+            <Button Content="Запази" Width="100" Margin="10"/>
+            <Button Content="Откажи" Width="100" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
