@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace EmployeeManagementSystem
 {
@@ -7,9 +9,11 @@ namespace EmployeeManagementSystem
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        // Document Request Buttons
+        }
+      
+
+        // Document Request Features
         private void OnSickLeaveRequestsButtonClick(object sender, RoutedEventArgs e)
         {
             SickLeaveWindow sickLeaveWindow = new SickLeaveWindow();
@@ -31,7 +35,7 @@ namespace EmployeeManagementSystem
             DocumentsToggleButton.IsChecked = false;
         }
 
-        // Employee Management Buttons
+        // Employee Management Features
         private void OnAddEmployeeButtonClick(object sender, RoutedEventArgs e)
         {
             AddEmployeesWindow addEmployeesWindow = new AddEmployeesWindow();
@@ -46,7 +50,7 @@ namespace EmployeeManagementSystem
             EmployeesToggleButton.IsChecked = false;
         }
 
-        // Archive Employee Management Buttons
+        // Archive Employee Management Features
         private void OnArchiveListButtonClick(object sender, RoutedEventArgs e)
         {
             ArchiveListWindow archiveListWindow = new ArchiveListWindow();
@@ -61,7 +65,7 @@ namespace EmployeeManagementSystem
             EmployeesToggleButton.IsChecked = false;
         }
 
-        // ToggleButton Checked and Unchecked Handlers
+        // Documents Features
         private void DocumentsToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             CloseEmployeesPopup();
@@ -84,7 +88,7 @@ namespace EmployeeManagementSystem
             EmployeesPopup.IsOpen = false;
         }
 
-        // Employee Management Buttons
+        // Employee Management Features
         private void VehiclesToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             VehiclesPopup.IsOpen = true;
@@ -94,7 +98,7 @@ namespace EmployeeManagementSystem
         {
             VehiclesPopup.IsOpen = false;
         }
-        // Vehicles Buttons
+        // Vehicles Features
         private void OnAddVehicleButtonClick(object sender, RoutedEventArgs e)
         {
             AddVehicleWindow addVehicleWindow = new AddVehicleWindow();
@@ -112,7 +116,7 @@ namespace EmployeeManagementSystem
             ArchiveVehicleWindow archiveVehicleWindow = new ArchiveVehicleWindow();
             archiveVehicleWindow.ShowDialog();
         }
-        //References Buttons
+        //References Features
 
         private void ReferencesToggleButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -130,6 +134,46 @@ namespace EmployeeManagementSystem
             ReferencesWindow referencesWindow = new ReferencesWindow();
             referencesWindow.ShowDialog();
         }
+
+        //Contracts Features
+
+        private void ContractsToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ContractsPopup.IsOpen = true;
+        }
+
+        private void OnAddContractButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddContractWindow addContractWindow = new AddContractWindow();
+            addContractWindow.ShowDialog();
+        }
+
+        private void OnContractListButtonClick(object sender, RoutedEventArgs e)
+        {
+            ContractListWindow contractsWindow = new ContractListWindow();
+            contractsWindow.ShowDialog();
+        }
+
+        //Calendar Features
+       
+        private void OnCalendarButtonClick(object sender, RoutedEventArgs e)
+        {
+            CalendarWindow calendarWindow = new CalendarWindow();
+            calendarWindow.ShowDialog();
+        }
+        //Calendar Features
+        private void EventCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Debug.WriteLine("SelectedDatesChanged event fired!");
+
+            foreach (var date in e.AddedItems)
+            {
+                Debug.WriteLine($"Selected Date: {date}");
+            }
+        }
+
+
+        //Close Features
         private void CloseAllPopups()
         {
             DocumentsPopup.IsOpen = false;

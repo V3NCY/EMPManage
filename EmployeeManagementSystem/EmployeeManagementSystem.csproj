@@ -89,6 +89,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddContractWindow.xaml.cs">
+      <DependentUpon>AddContractWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddEmployeesWindow.xaml.cs">
       <DependentUpon>AddEmployeesWindow.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,12 @@
     </Compile>
     <Compile Include="ArchiveVehicleWindow.xaml.cs">
       <DependentUpon>ArchiveVehicleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarWindow.xaml.cs">
+      <DependentUpon>CalendarWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContractListWindow.xaml.cs">
+      <DependentUpon>ContractListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeListWindow.xaml.cs">
       <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
@@ -125,6 +134,10 @@
     <Compile Include="VehicleListWindow.xaml.cs">
       <DependentUpon>VehicleListWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddContractWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddEmployeesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +155,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ArchiveVehicleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CalendarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContractListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

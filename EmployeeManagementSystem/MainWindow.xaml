@@ -166,6 +166,40 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="ToggleButton" x:Key="ContractsToggleButtonStyle">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="165"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                  VerticalAlignment="Center"/>
+                            </Border>
+                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="145,18,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Image Source="Assets/worldwidemap.png" Stretch="Uniform"/>
@@ -173,21 +207,20 @@
             <Image Source="Assets/ТРЗorak.png" Width="100" HorizontalAlignment="Left"/>
             <TextBlock Text="" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
             <UniformGrid Rows="4" Columns="4" Margin="0,0,0,10">
-                <!-- Main Button - Добави документ -->
+                <!-- Main Button - Documents -->
                 <ToggleButton x:Name="DocumentsToggleButton" Content="Добави документ" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource DocumentsToggleButtonStyle}" Checked="DocumentsToggleButton_Checked" />
-                <!-- Popup - Болнични, отпуски, молби -->
                 <Popup x:Name="DocumentsPopup" PlacementTarget="{Binding ElementName=DocumentsToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
                             <Button Content="Добави болничен" Click="OnSickLeaveRequestsButtonClick" Margin="0,5"/>
                             <Button Content="Добави молба" Click="OnOtherLeaveRequestsButtonClick" Margin="0,5"/>
-                            <Button Content="Добави платен отпуск" Click="OnPaidLeaveRequestsButtonClick" Margin="0,5"/>                        
+                            <Button Content="Добави платен отпуск" Click="OnPaidLeaveRequestsButtonClick" Margin="0,5"/>
+                            <Button Content="Календар" Click="OnCalendarButtonClick" Margin="0,5"/>
                         </StackPanel>
                     </Border>
                 </Popup>
-                <!-- Main Button - Служители -->
+                <!-- Main Button - Employees -->
                 <ToggleButton x:Name="EmployeesToggleButton" Content="Служители" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource EmployeesToggleButtonStyle}" Checked="EmployeesToggleButton_Checked" />
-                <!-- Popup - Болнични, отпуски, молби -->
                 <Popup x:Name="EmployeesPopup" PlacementTarget="{Binding ElementName=EmployeesToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
@@ -198,9 +231,8 @@
                         </StackPanel>
                     </Border>
                 </Popup>
-                <!-- Main Button - Aвтомобили -->
+                <!-- Main Button - Automobiles -->
                 <ToggleButton x:Name="VehiclesToggleButton" Content="Автомобили" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource VehiclesToggleButtonStyle}" Checked="VehiclesToggleButton_Checked" />
-                <!-- Popup - Добави, Списък, Архив -->
                 <Popup x:Name="VehiclesPopup" PlacementTarget="{Binding ElementName=VehiclesToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
@@ -210,9 +242,8 @@
                         </StackPanel>
                     </Border>
                 </Popup>
-                <!-- Main Button - Справки -->
+                <!-- Main Button - References -->
                 <ToggleButton x:Name="ReferencesToggleButton" Content="Справки" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ReferencesToggleButtonStyle}" Checked="ReferencesToggleButton_Checked" />
-                <!-- Popup - Добави, Видове справки -->
                 <Popup x:Name="ReferencesPopup" PlacementTarget="{Binding ElementName=ReferencesToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
@@ -221,7 +252,15 @@
                         </StackPanel>
                     </Border>
                 </Popup>
-                
+                <ToggleButton x:Name="ContractsToggleButton" Content="Договори" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ContractsToggleButtonStyle}" Checked="ContractsToggleButton_Checked" />
+                <Popup x:Name="ContractsPopup" PlacementTarget="{Binding ElementName=ContractsToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
+                        <StackPanel>
+                            <Button Content="Добави договор" Click="OnAddContractButtonClick" Margin="0,5"/>
+                            <Button Content="Списък с договори" Click="OnContractListButtonClick" Margin="0,5"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
             </UniformGrid>
         </StackPanel>
     </Grid>
