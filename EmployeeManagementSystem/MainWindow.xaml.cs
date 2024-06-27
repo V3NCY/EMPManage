@@ -124,6 +124,12 @@ namespace EmployeeManagementSystem
             AddReferenceWindow addReferenceWindow = new AddReferenceWindow();
             addReferenceWindow.ShowDialog();
         }
+
+        private void OnReferencesListButtonClick(object sender, RoutedEventArgs e)
+        {
+            ReferencesWindow referencesWindow = new ReferencesWindow();
+            referencesWindow.ShowDialog();
+        }
         private void CloseAllPopups()
         {
             DocumentsPopup.IsOpen = false;

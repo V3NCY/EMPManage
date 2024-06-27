@@ -217,9 +217,11 @@
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
                             <Button Content="Добави справка" Click="OnAddReferenceButtonClick" Margin="0,5"/>
+                            <Button Content="Списък със справки" Click="OnReferencesListButtonClick" Margin="0,5"/>
                         </StackPanel>
                     </Border>
                 </Popup>
+                
             </UniformGrid>
         </StackPanel>
     </Grid>

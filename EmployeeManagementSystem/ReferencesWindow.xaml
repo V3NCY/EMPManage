@@ -5,8 +5,118 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="Справки" Height="450" Width="800">
-    <Grid>
-        
+        Title="Справки" Height="500" Width="800">
+    <Window.Resources>
+        <!-- Style for Category 1 -->
+        <Style x:Key="Category1ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="#073763"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style for Category 2 -->
+        <Style x:Key="Category2ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#e5c5bd"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="#e5c5bd"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Style for Category 3 -->
+        <Style x:Key="Category3ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#8b0000"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="#8b0000"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Category 1 Buttons in Column 0 -->
+        <Button Content="Справка служители" Style="{StaticResource Category1ButtonStyle}" Grid.Row="0" Grid.Column="0"/>
+        <Button Content="Справка фактури" Style="{StaticResource Category1ButtonStyle}" Grid.Row="1" Grid.Column="0"/>
+        <Button Content="Справка фишове и ведомости" Style="{StaticResource Category1ButtonStyle}" Grid.Row="2" Grid.Column="0"/>
+        <Button Content="Справка отпуски" Style="{StaticResource Category1ButtonStyle}" Grid.Row="3" Grid.Column="0"/>
+        <Button Content="Справка болнични" Style="{StaticResource Category1ButtonStyle}" Grid.Row="4" Grid.Column="0"/>
+        <Button Content="Справка работна карта" Style="{StaticResource Category1ButtonStyle}" Grid.Row="5" Grid.Column="0"/>
+
+        <!-- Category 2 Buttons in Column 1 -->
+        <Button Content="Справка услуги" Style="{StaticResource Category2ButtonStyle}" Grid.Row="0" Grid.Column="1"/>
+        <Button Content="Another Reference" Style="{StaticResource Category2ButtonStyle}" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="More References" Style="{StaticResource Category2ButtonStyle}" Grid.Row="2" Grid.Column="1"/>
+        <Button Content="Even More References" Style="{StaticResource Category2ButtonStyle}" Grid.Row="3" Grid.Column="1"/>
+        <Button Content="Last Reference" Style="{StaticResource Category2ButtonStyle}" Grid.Row="4" Grid.Column="1"/>
+
+        <!-- Category 3 Buttons in Column 2 -->
+        <Button Content="Справка автомобили" Style="{StaticResource Category3ButtonStyle}" Grid.Row="0" Grid.Column="2"/>
+        <Button Content="Another Category 3" Style="{StaticResource Category3ButtonStyle}" Grid.Row="1" Grid.Column="2"/>
+
+        <!-- Placeholder for detailed reference content, e.g., DataGrid, ListView, etc. -->
+        <ContentControl x:Name="ReferenceContent" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="10"/>
     </Grid>
 </Window>
