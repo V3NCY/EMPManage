@@ -34,9 +34,9 @@
 
         <!-- Additional checkboxes -->
         <StackPanel Margin="0 40">
-            <CheckBox x:Name="CheckBox1" Content="Box 1" Margin="0,5"/>
-            <CheckBox x:Name="CheckBox2" Content="Box 2" Margin="0,5"/>
-            <CheckBox x:Name="CheckBox3" Content="Box 3" Margin="0,5"/>
+            <CheckBox x:Name="CheckBox1" Content="С включени данни от НАП и НОИ" Margin="0,5"/>
+            <CheckBox x:Name="CheckBox2" Content="С влючени ведомости и фишове" Margin="0,5"/>
+            <CheckBox x:Name="CheckBox3" Content="С включени удостоверения" Margin="0,5"/>
             <Button Content="Изтегли справка" Width="140" Margin="10 100" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
             
         </StackPanel>
