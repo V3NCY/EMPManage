@@ -101,6 +101,9 @@
     <Compile Include="AddVehicleWindow.xaml.cs">
       <DependentUpon>AddVehicleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdministrativeDepartmentWindow.xaml.cs">
+      <DependentUpon>AdministrativeDepartmentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArchiveListWindow.xaml.cs">
       <DependentUpon>ArchiveListWindow.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,15 @@
     </Compile>
     <Compile Include="ContractListWindow.xaml.cs">
       <DependentUpon>ContractListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CorporateDepartmentWindow.xaml.cs">
+      <DependentUpon>CorporateDepartmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DevDepartmentWindow.xaml.cs">
+      <DependentUpon>DevDepartmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EducationDepartmentWindow.xaml.cs">
+      <DependentUpon>EducationDepartmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeListWindow.xaml.cs">
       <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
@@ -150,6 +162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AdministrativeDepartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ArchiveListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +179,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ContractListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CorporateDepartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DevDepartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EducationDepartmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

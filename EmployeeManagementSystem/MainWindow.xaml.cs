@@ -171,6 +171,35 @@ namespace EmployeeManagementSystem
                 Debug.WriteLine($"Selected Date: {date}");
             }
         }
+        //Departments Features
+
+        private void DepartmentsToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DepartmentsPopup.IsOpen = true;
+        }
+
+        private void OnAdministrativeDepartmentButtonClick(object sender, RoutedEventArgs e)
+        {
+            AdministrativeDepartmentWindow administrativeWindow = new AdministrativeDepartmentWindow();
+            administrativeWindow.ShowDialog();
+        }
+
+        private void OnEducationDepartmentButtonClick(object sender, RoutedEventArgs e)
+        {
+            EducationDepartmentWindow educationWindow = new EducationDepartmentWindow();
+            educationWindow.ShowDialog();
+        }
+
+        private void OneCorporateDepartmentButtonClick(object sender, RoutedEventArgs e)
+        {
+            CorporateDepartmentWindow corporateWindow = new CorporateDepartmentWindow();
+            corporateWindow.ShowDialog();
+        }
+        private void OneDevDepartmentButtonClick(object sender, RoutedEventArgs e)
+        {
+            DevDepartmentWindow devWindow = new DevDepartmentWindow();
+            devWindow.ShowDialog();
+        }
 
 
         //Close Features

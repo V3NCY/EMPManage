@@ -115,7 +115,7 @@ namespace EmployeeManagementSystem
 
                 // Add color selection menu items on right click
                 var colorsMenu = new MenuItem { Header = "Select Color" };
-                AddColorMenuItem(colorsMenu, "White", Brushes.White);
+                AddColorMenuItem(colorsMenu, "Red", Brushes.Red);
                 AddColorMenuItem(colorsMenu, "LightBlue", Brushes.LightBlue);
                 AddColorMenuItem(colorsMenu, "LightGreen", Brushes.LightGreen);
                 AddColorMenuItem(colorsMenu, "Yellow", Brushes.Yellow);
@@ -243,8 +243,8 @@ namespace EmployeeManagementSystem
 
                     switch (colorName)
                     {
-                        case "White":
-                            border.Background = Brushes.White;
+                        case "Red":
+                            border.Background = Brushes.Red;
                             break;
                         case "LightBlue":
                             border.Background = Brushes.LightBlue;
