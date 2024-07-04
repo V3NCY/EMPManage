@@ -86,7 +86,7 @@ namespace EmployeeManagementSystem
                 {
                     Text = day.ToString(),
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    FontSize = 14, // Set font size
+                    FontSize = 17, // Set font size
                     FontWeight = FontWeights.Normal // Set font weight
                 };
 
@@ -102,9 +102,10 @@ namespace EmployeeManagementSystem
 
                 cell.Child = cellContent;
 
-                if (date.Year == DateTime.Now.Year && date.Month == DateTime.Now.Month && day == DateTime.Now.Day)
+                bool isCurrentDate = date.Year == DateTime.Now.Year && date.Month == DateTime.Now.Month && day == DateTime.Now.Day;
+                if (isCurrentDate)
                 {
-                    cell.Background = Brushes.LightCoral; // Highlight current date
+                    cell.Background = Brushes.Lavender; // Highlight current date
                 }
 
                 Grid.SetRow(cell, row);
@@ -112,7 +113,7 @@ namespace EmployeeManagementSystem
 
                 var contextMenu = new ContextMenu();
 
-                // Add color selection menu items
+                // Add color selection menu items on right click
                 var colorsMenu = new MenuItem { Header = "Select Color" };
                 AddColorMenuItem(colorsMenu, "White", Brushes.White);
                 AddColorMenuItem(colorsMenu, "LightBlue", Brushes.LightBlue);
@@ -134,10 +135,11 @@ namespace EmployeeManagementSystem
                 contextMenu.Items.Add(deleteNoteMenuItem);
 
                 var removeColorMenuItem = new MenuItem { Header = "Remove Color" };
-                removeColorMenuItem.Click += (s, e) => RemoveColor_Click(cell);
+                removeColorMenuItem.Click += (s, e) => RemoveColor_Click(cell, isCurrentDate);
                 contextMenu.Items.Add(removeColorMenuItem);
 
                 cell.ContextMenu = contextMenu;
+                UpdateContextMenu(cell, isCurrentDate);
 
                 CalendarGrid.Children.Add(cell);
 
@@ -219,25 +221,26 @@ namespace EmployeeManagementSystem
             noteIndicator.ToolTip = null;
         }
 
-        private void RemoveColor_Click(Border cell)
+        private void RemoveColor_Click(Border cell, bool isCurrentDate)
         {
-            cell.Background = Brushes.White;
+            if (!isCurrentDate)
+            {
+                cell.Background = Brushes.White;
+                UpdateContextMenu(cell, isCurrentDate);
+            }
         }
 
         private void ColorMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (sender is MenuItem menuItem && menuItem.Parent is MenuItem parentMenu)
             {
-                // Find the border that triggered the context menu
                 Border border = ((ContextMenu)parentMenu.Parent).PlacementTarget as Border;
                 if (border != null)
                 {
-                    // Get the color name from the StackPanel's TextBlock
                     var stackPanel = (StackPanel)menuItem.Header;
                     var textBlock = (TextBlock)stackPanel.Children[1];
                     var colorName = textBlock.Text;
 
-                    // Set the background color based on selected color
                     switch (colorName)
                     {
                         case "White":
@@ -252,25 +255,20 @@ namespace EmployeeManagementSystem
                         case "Yellow":
                             border.Background = Brushes.Yellow;
                             break;
-                        case "Remove Color":
-                            border.Background = Brushes.Transparent; // or any other default color you want
-                            break;
-                            // Add more cases for other colors as needed
                     }
 
-                    // Check if border has background color set
-                    UpdateContextMenu(border);
+                    UpdateContextMenu(border, false);
                 }
             }
         }
 
-        private void UpdateContextMenu(Border cell)
+        private void UpdateContextMenu(Border cell, bool isCurrentDate)
         {
             var contextMenu = cell.ContextMenu;
             var removeColorMenuItem = contextMenu.Items[contextMenu.Items.Count - 1] as MenuItem;
             if (removeColorMenuItem != null)
             {
-                removeColorMenuItem.Visibility = cell.Background != Brushes.White ? Visibility.Visible : Visibility.Collapsed;
+                removeColorMenuItem.Visibility = cell.Background != Brushes.White && !isCurrentDate ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
