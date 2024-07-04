@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
@@ -63,14 +64,15 @@ namespace EmployeeManagementSystem
             DateTime firstDayOfMonth = new DateTime(date.Year, date.Month, 1);
             int startDay = (int)firstDayOfMonth.DayOfWeek;
 
-            int row = 0;
+            int row = 1;
             int col = startDay;
 
             for (int day = 1; day <= daysInMonth; day++)
             {
                 var cell = new Border
                 {
-                    Style = (Style)this.Resources["CalendarCellStyle"]
+                    Style = (Style)this.Resources["CalendarCellStyle"],
+                    Background = Brushes.White // Default background color
                 };
 
                 var cellContent = new StackPanel
@@ -83,7 +85,9 @@ namespace EmployeeManagementSystem
                 var dateText = new TextBlock
                 {
                     Text = day.ToString(),
-                    HorizontalAlignment = HorizontalAlignment.Center
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    FontSize = 14, // Set font size
+                    FontWeight = FontWeights.Normal // Set font weight
                 };
 
                 var noteIndicator = new TextBlock
@@ -98,6 +102,11 @@ namespace EmployeeManagementSystem
 
                 cell.Child = cellContent;
 
+                if (date.Year == DateTime.Now.Year && date.Month == DateTime.Now.Month && day == DateTime.Now.Day)
+                {
+                    cell.Background = Brushes.LightCoral; // Highlight current date
+                }
+
                 Grid.SetRow(cell, row);
                 Grid.SetColumn(cell, col);
 
@@ -105,12 +114,11 @@ namespace EmployeeManagementSystem
 
                 // Add color selection menu items
                 var colorsMenu = new MenuItem { Header = "Select Color" };
-                foreach (var color in new string[] { "White", "LightBlue", "LightGreen", "Yellow" })
-                {
-                    var colorMenuItem = new MenuItem { Header = color };
-                    colorMenuItem.Click += ColorMenuItem_Click;
-                    colorsMenu.Items.Add(colorMenuItem);
-                }
+                AddColorMenuItem(colorsMenu, "White", Brushes.White);
+                AddColorMenuItem(colorsMenu, "LightBlue", Brushes.LightBlue);
+                AddColorMenuItem(colorsMenu, "LightGreen", Brushes.LightGreen);
+                AddColorMenuItem(colorsMenu, "Yellow", Brushes.Yellow);
+
                 contextMenu.Items.Add(colorsMenu);
 
                 var addNoteMenuItem = new MenuItem { Header = "Add Note" };
@@ -125,6 +133,10 @@ namespace EmployeeManagementSystem
                 deleteNoteMenuItem.Click += (s, e) => DeleteNote_Click(noteIndicator);
                 contextMenu.Items.Add(deleteNoteMenuItem);
 
+                var removeColorMenuItem = new MenuItem { Header = "Remove Color" };
+                removeColorMenuItem.Click += (s, e) => RemoveColor_Click(cell);
+                contextMenu.Items.Add(removeColorMenuItem);
+
                 cell.ContextMenu = contextMenu;
 
                 CalendarGrid.Children.Add(cell);
@@ -136,6 +148,29 @@ namespace EmployeeManagementSystem
                     row++;
                 }
             }
+        }
+
+        private void AddColorMenuItem(MenuItem parentMenu, string colorName, Brush colorBrush)
+        {
+            var colorMenuItem = new MenuItem();
+
+            var stackPanel = new StackPanel { Orientation = Orientation.Horizontal };
+            var colorRectangle = new Rectangle
+            {
+                Width = 16,
+                Height = 16,
+                Fill = colorBrush,
+                Margin = new Thickness(0, 0, 5, 0)
+            };
+            var textBlock = new TextBlock { Text = colorName };
+
+            stackPanel.Children.Add(colorRectangle);
+            stackPanel.Children.Add(textBlock);
+
+            colorMenuItem.Header = stackPanel;
+            colorMenuItem.Click += ColorMenuItem_Click;
+
+            parentMenu.Items.Add(colorMenuItem);
         }
 
         private void UpdateCurrentDate()
@@ -184,6 +219,11 @@ namespace EmployeeManagementSystem
             noteIndicator.ToolTip = null;
         }
 
+        private void RemoveColor_Click(Border cell)
+        {
+            cell.Background = Brushes.White;
+        }
+
         private void ColorMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (sender is MenuItem menuItem && menuItem.Parent is MenuItem parentMenu)
@@ -192,8 +232,13 @@ namespace EmployeeManagementSystem
                 Border border = ((ContextMenu)parentMenu.Parent).PlacementTarget as Border;
                 if (border != null)
                 {
+                    // Get the color name from the StackPanel's TextBlock
+                    var stackPanel = (StackPanel)menuItem.Header;
+                    var textBlock = (TextBlock)stackPanel.Children[1];
+                    var colorName = textBlock.Text;
+
                     // Set the background color based on selected color
-                    switch (menuItem.Header.ToString())
+                    switch (colorName)
                     {
                         case "White":
                             border.Background = Brushes.White;
@@ -219,47 +264,16 @@ namespace EmployeeManagementSystem
             }
         }
 
-        private void UpdateContextMenu(Border border)
+        private void UpdateContextMenu(Border cell)
         {
-            // Find the context menu of the border
-            ContextMenu contextMenu = border.ContextMenu as ContextMenu;
-            if (contextMenu != null)
+            var contextMenu = cell.ContextMenu;
+            var removeColorMenuItem = contextMenu.Items[contextMenu.Items.Count - 1] as MenuItem;
+            if (removeColorMenuItem != null)
             {
-                MenuItem removeColorMenuItem = null;
-
-                // Find the "Remove Color" menu item
-                foreach (MenuItem item in contextMenu.Items)
-                {
-                    if (item.Header.ToString() == "Remove Color")
-                    {
-                        removeColorMenuItem = item;
-                        break;
-                    }
-                }
-
-                // Update visibility of "Remove Color" menu item based on border background
-                if (border.Background == Brushes.Transparent)
-                {
-                    if (removeColorMenuItem != null)
-                        contextMenu.Items.Remove(removeColorMenuItem); // Remove if exists
-                }
-                else
-                {
-                    if (removeColorMenuItem == null)
-                    {
-                        // Create and add "Remove Color" menu item
-                        removeColorMenuItem = new MenuItem { Header = "Remove Color" };
-                        removeColorMenuItem.Click += (s, e) => RemoveColorMenuItem_Click(border);
-                        contextMenu.Items.Add(removeColorMenuItem);
-                    }
-                }
+                removeColorMenuItem.Visibility = cell.Background != Brushes.White ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
-        private void RemoveColorMenuItem_Click(Border border)
-        {
-            border.Background = Brushes.Transparent; // or any other default color you want
-        }
         public bool IsCurrentDate
         {
             get { return DateTime.Today == _currentDate; }

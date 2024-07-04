@@ -13,15 +13,20 @@
             <Setter Property="BorderBrush" Value="{x:Static SystemColors.ActiveBorderBrush}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Margin" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <!-- Rounded corners -->
+            <Setter Property="Padding" Value="5" />
+            <!-- Padding inside the cell -->
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="2" Opacity="0.5" BlurRadius="5" />
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <!-- Hover effect -->
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="LightBlue" />
                 </Trigger>
-                <!-- Highlight current date -->
-                <DataTrigger Binding="{Binding IsCurrentDate}" Value="True">
-                    <Setter Property="Background" Value="LightPink" />
-                </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
