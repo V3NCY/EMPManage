@@ -1,11 +1,11 @@
-﻿<Window x:Class="EmployeeManagementSystem.AssessmentListWindow"
+﻿<Window x:Class="EmployeeManagementSystem.DocumentsListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="Списък с атестации" WindowState="Maximized">
+        Title="DocumentsListWindow" WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="ListView">
             <Setter Property="Background" Value="#F0F0F0"/>
@@ -47,20 +47,19 @@
     <Grid>
         <Slider x:Name="sliderLeaveDays" Minimum="0" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" Value="0"/>
         <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <ListView Name="lvAssessments" ItemsSource="{Binding AssessmentsList}" SelectionChanged="lvAssessments_SelectionChanged">
+            <ListView Name="lvDocuments" ItemsSource="{Binding DocumentsList}" SelectionChanged="lvDocuments_SelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Име и фамилия на служителя" DisplayMemberBinding="{Binding FullName}" Width="200"/>
-                        <GridViewColumn Header="Атестиращ" DisplayMemberBinding="{Binding Assessor}" Width="200"/>
-                        <GridViewColumn Header="Дата на атестация" DisplayMemberBinding="{Binding AssessmentDate}" Width="200"/>                        
-                        <GridViewColumn Header="Длъжност" DisplayMemberBinding="{Binding JobTitle}" Width="200"/>
-                        <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding Department}" Width="200"/>
-                        <GridViewColumn Header="Постижения по поставените цели" DisplayMemberBinding="{Binding AreasOfImprovement}" Width="200"/>
-                        <GridViewColumn Header="Оценка на представянето" DisplayMemberBinding="{Binding PerformanceRating}" Width="200"/>
-                        <GridViewColumn Header="Нужди от обучение" DisplayMemberBinding="{Binding TrainingNeeds}" Width="200"/>
-                        <GridViewColumn Header="Общи коментари" DisplayMemberBinding="{Binding OverallComments}" Width="200"/>
-                        <GridViewColumn Header="Следващи стъпки" DisplayMemberBinding="{Binding NextSteps}" Width="200"/>
-                      
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
+                        <GridViewColumn Header="Име на служител" DisplayMemberBinding="{Binding FullName}" Width="200"/>
+                        <GridViewColumn Header="Отпуски" DisplayMemberBinding="{Binding PaidLeave}" Width="200"/>
+                        <GridViewColumn Header="Болнични" DisplayMemberBinding="{Binding SickLeave}" Width="200"/>
+                        <GridViewColumn Header="Молби" DisplayMemberBinding="{Binding OtherLeave}" Width="200"/>
+                        <GridViewColumn Header="Атестации" DisplayMemberBinding="{Binding Assessments}" Width="200"/>
+                        <GridViewColumn Header="Оферти за работа" DisplayMemberBinding="{Binding JobOffer}" Width="200"/>
+                        <GridViewColumn Header="Предложения за работа" DisplayMemberBinding="{Binding OfficialJob}" Width="200"/>
+                        <GridViewColumn Header="CV-та" DisplayMemberBinding="{Binding CVs}" Width="200"/>
+                        
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>
@@ -73,5 +72,4 @@
         </ScrollViewer>
         <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Margin="30"/>
     </Grid>
-
 </Window>

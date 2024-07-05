@@ -140,6 +140,9 @@
     <Compile Include="DevDepartmentWindow.xaml.cs">
       <DependentUpon>DevDepartmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DocumentsListWindow.xaml.cs">
+      <DependentUpon>DocumentsListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EducationDepartmentWindow.xaml.cs">
       <DependentUpon>EducationDepartmentWindow.xaml</DependentUpon>
     </Compile>
@@ -256,6 +259,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DevDepartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DocumentsListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

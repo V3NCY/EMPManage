@@ -65,6 +65,12 @@ namespace EmployeeManagementSystem
         }
 
         // Documents Features
+        private void OnDocumentsListButtonClick(object sender, RoutedEventArgs e)
+        {
+            DocumentsListWindow documentsListWindow = new DocumentsListWindow();
+            documentsListWindow.ShowDialog();
+        }
+        
         private void DocumentsToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             CloseEmployeesPopup();
