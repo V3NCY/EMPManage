@@ -280,6 +280,37 @@ namespace EmployeeManagementSystem
             }
         }
 
+        //Analysis and Report Features
+
+        private void AnalysisReportToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            AnalysisReportPopup.IsOpen = true;
+        }
+
+        private void OnAnalysisReportButtonClick(object sender, RoutedEventArgs e)
+        {
+            AnalysisReportWindow analysisReportWindow = new AnalysisReportWindow();
+            analysisReportWindow.ShowDialog();
+        }
+        //Assessment
+
+        private void AssessmentToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            AssessmentPopup.IsOpen = true;
+        }
+
+        private void OnAddAssessmentButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddAssessmentWindow addAssessmentWindow = new AddAssessmentWindow();
+            addAssessmentWindow.ShowDialog();
+        }
+        private void OnAssessmentListButtonClick(object sender, RoutedEventArgs e)
+        {
+            AssessmentListWindow assessmentListWindow = new AssessmentListWindow();
+            assessmentListWindow.ShowDialog();
+        }
+
+
         //Close Features
         private void CloseAllPopups()
         {

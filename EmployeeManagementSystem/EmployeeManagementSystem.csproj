@@ -89,6 +89,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddAssessmentWindow.xaml.cs">
+      <DependentUpon>AddAssessmentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddContractWindow.xaml.cs">
       <DependentUpon>AddContractWindow.xaml</DependentUpon>
     </Compile>
@@ -104,11 +107,17 @@
     <Compile Include="AdministrativeDepartmentWindow.xaml.cs">
       <DependentUpon>AdministrativeDepartmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AnalysisReportWindow.xaml.cs">
+      <DependentUpon>AnalysisReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArchiveListWindow.xaml.cs">
       <DependentUpon>ArchiveListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ArchiveVehicleWindow.xaml.cs">
       <DependentUpon>ArchiveVehicleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AssessmentListWindow.xaml.cs">
+      <DependentUpon>AssessmentListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CalendarWindow.xaml.cs">
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
@@ -182,6 +191,10 @@
     <Compile Include="VehicleListWindow.xaml.cs">
       <DependentUpon>VehicleListWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddAssessmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddContractWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,11 +215,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AnalysisReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ArchiveListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ArchiveVehicleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AssessmentListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

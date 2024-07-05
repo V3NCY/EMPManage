@@ -332,6 +332,72 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="ToggleButton" x:Key="AnalysisReportToggleButtonStyle">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="165"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}"
+BorderBrush="{TemplateBinding BorderBrush}"
+BorderThickness="{TemplateBinding BorderThickness}"
+CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="145,18,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ToggleButton" x:Key="AssessmentToggleButtonStyle">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="165"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}"
+BorderBrush="{TemplateBinding BorderBrush}"
+BorderThickness="{TemplateBinding BorderThickness}"
+CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="145,18,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Image Source="Assets/worldwidemap.png" Stretch="Uniform"/>
@@ -351,7 +417,7 @@
                         </StackPanel>
                     </Border>
                 </Popup>
-                <!-- Main Button - Employees -->
+                <!-- Employees -->
                 <ToggleButton x:Name="EmployeesToggleButton" Content="Служители" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource EmployeesToggleButtonStyle}" Checked="EmployeesToggleButton_Checked" />
                 <Popup x:Name="EmployeesPopup" PlacementTarget="{Binding ElementName=EmployeesToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
@@ -363,7 +429,7 @@
                         </StackPanel>
                     </Border>
                 </Popup>
-                <!-- Фишове и ведомости -->
+                <!-- Receipts and Payrolls -->
                 <ToggleButton x:Name="PaymentsToggleButton" Content="Фишове и ведомости" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource PaymentsToggleButtonStyle}" Checked="PaymentsToggleButton_Checked" />
                 <Popup x:Name="PaymentsPopup" PlacementTarget="{Binding ElementName=PaymentsToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
@@ -373,7 +439,7 @@
                         </StackPanel>
                     </Border>
                 </Popup>
-                <!-- Main Button - Documents -->
+                <!-- Documents -->
                 <ToggleButton x:Name="DocumentsToggleButton" Content="Документи" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource DocumentsToggleButtonStyle}" Checked="DocumentsToggleButton_Checked" />
                 <Popup x:Name="DocumentsPopup" PlacementTarget="{Binding ElementName=DocumentsToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
@@ -384,7 +450,7 @@
                         </StackPanel>
                     </Border>
                 </Popup>
-                <!-- Main Button - References -->
+                <!-- References -->
                 <ToggleButton x:Name="ReferencesToggleButton" Content="Справки" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ReferencesToggleButtonStyle}" Checked="ReferencesToggleButton_Checked" />
                 <Popup x:Name="ReferencesPopup" PlacementTarget="{Binding ElementName=ReferencesToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
@@ -395,7 +461,7 @@
                     </Border>
                 </Popup>
                 
-                <!-- Main Button - Automobiles -->
+                <!-- Automobiles -->
                 <ToggleButton x:Name="VehiclesToggleButton" Content="Автомобили" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource VehiclesToggleButtonStyle}" Checked="VehiclesToggleButton_Checked" />
                 <Popup x:Name="VehiclesPopup" PlacementTarget="{Binding ElementName=VehiclesToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
@@ -441,6 +507,25 @@
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
                             <Button Content="Календар" Click="OnCalendarButtonClick" Margin="0,5"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+                <!-- Analysis and  reporting-->
+                <ToggleButton x:Name="AnalysisReportToggleButton" Content="Анализ и отчетност" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AnalysisReportToggleButtonStyle}" Checked="AnalysisReportToggleButton_Checked" />
+                <Popup x:Name="AnalysisReportPopup" PlacementTarget="{Binding ElementName=AnalysisReportToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
+                        <StackPanel>
+                            <Button Content="Анализ и отчетност" Click="OnAnalysisReportButtonClick" Margin="0,5"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+                <!-- Assessment-->
+                <ToggleButton x:Name="AssessmentToggleButton" Content="Атестации" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AssessmentToggleButtonStyle}" Checked="AssessmentToggleButton_Checked" />
+                <Popup x:Name="AssessmentPopup" PlacementTarget="{Binding ElementName=AssessmentToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
+                        <StackPanel>
+                            <Button Content="Добави атестация" Click="OnAddAssessmentButtonClick" Margin="0,5"/>
+                            <Button Content="Списък с атестация" Click="OnAssessmentListButtonClick" Margin="0,5"/>
                         </StackPanel>
                     </Border>
                 </Popup>
