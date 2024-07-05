@@ -5,8 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="Списък с атестации" Height="450" Width="800">
+        Title="Списък с атестации" WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#073763"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="0,1,0,0"/>
+
+        </Style>
+        <Style TargetType="ContextMenu">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="MenuItem">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+    </Window.Resources>
     <Grid>
-        
+        <Slider x:Name="sliderLeaveDays" Minimum="0" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" Value="0"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <ListView Name="lvEmployees" ItemsSource="{Binding EmployeesList}" SelectionChanged="lvAssessments_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Име и фамилия на служителя" DisplayMemberBinding="{Binding FullName}" Width="200"/>
+                        <GridViewColumn Header="Атестиращ" DisplayMemberBinding="{Binding Assessor}" Width="200"/>
+                        <GridViewColumn Header="Дата на атестация" DisplayMemberBinding="{Binding AssessmentDate}" Width="200"/>                        
+                        <GridViewColumn Header="Длъжност" DisplayMemberBinding="{Binding JobTitle}" Width="200"/>
+                        <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding Department}" Width="200"/>
+                        <GridViewColumn Header="Постижения по поставените цели" DisplayMemberBinding="{Binding AreasOfImprovement}" Width="200"/>
+                        <GridViewColumn Header="Оценка на представянето" DisplayMemberBinding="{Binding PerformanceRating}" Width="200"/>
+                        <GridViewColumn Header="Нужди от обучение" DisplayMemberBinding="{Binding TrainingNeeds}" Width="200"/>
+                        <GridViewColumn Header="Общи коментари" DisplayMemberBinding="{Binding OverallComments}" Width="200"/>
+                        <GridViewColumn Header="Следващи стъпки" DisplayMemberBinding="{Binding NextSteps}" Width="200"/>
+                      
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Архивирай" />
+                        <MenuItem Header="Редактирай" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </ScrollViewer>
+        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Margin="30"/>
     </Grid>
+
 </Window>

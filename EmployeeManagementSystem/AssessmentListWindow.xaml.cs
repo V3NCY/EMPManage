@@ -23,5 +23,9 @@ namespace EmployeeManagementSystem
         {
             InitializeComponent();
         }
+        private void lvAssessments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Handle selection change if needed
+        }
     }
 }

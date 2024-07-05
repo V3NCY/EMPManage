@@ -5,8 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="Добави атестация" Height="450" Width="800">
+        Title="Добави атестация" WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <ScrollViewer>
+            <StackPanel Margin="20">
+            <TextBlock Text="Добави атестация" FontWeight="Bold" FontSize="15" Margin="0,0,0,20"/>
+
+            <Label Content="Име на служител" FontSize="15"/>
+            <TextBox x:Name="txtFirstName"/>
+
+            <Label Content="Фамилия на служител" FontSize="15"/>
+            <TextBox x:Name="txtLastName"/>
+
+            <Label Content="Атестиращ" FontSize="15"/>
+            <TextBox x:Name="txtAssessor"/>
+
+            <Label Content="Дата на атестация" FontSize="15"/>
+            <TextBox x:Name="txtAssessmentDate"/>
+
+            <Label Content="Длъжност" FontSize="15"/>
+            <TextBox x:Name="txtJobTitle"/>
+
+            <Label Content="Отдел" FontSize="15"/>
+            <TextBox x:Name="txtDepartment"/>
+
+            <Label Content="Постижения по поставените цели" FontSize="15"/>
+            <TextBox x:Name="txtAreasOfImprovement"/>
+
+            <Label Content="Оценка на представянето" FontSize="15"/>
+            <TextBox x:Name="txtPerformanceRating"/>
+
+            <Label Content="Нужди от обучение" FontSize="15"/>
+            <TextBox x:Name="txtTrainingNeeds"/>
+
+            <Label Content="Общи коментари" FontSize="15"/>
+            <TextBox x:Name="txtOverallComments"/>
+
+            <Label Content="Следващи стъпки" FontSize="15"/>
+            <TextBox x:Name="txtNextSteps"/>
+
+            <Button Content="Добави"/>
+        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
