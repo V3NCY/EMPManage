@@ -113,11 +113,20 @@
     <Compile Include="CalendarWindow.xaml.cs">
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CandidatesHRWindow.xaml.cs">
+      <DependentUpon>CandidatesHRWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CertificatesHRWindow.xaml.cs">
+      <DependentUpon>CertificatesHRWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContractListWindow.xaml.cs">
       <DependentUpon>ContractListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CorporateDepartmentWindow.xaml.cs">
       <DependentUpon>CorporateDepartmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CVsHRWindow.xaml.cs">
+      <DependentUpon>CVsHRWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DevDepartmentWindow.xaml.cs">
       <DependentUpon>DevDepartmentWindow.xaml</DependentUpon>
@@ -128,20 +137,47 @@
     <Compile Include="EmployeeListWindow.xaml.cs">
       <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventsHRWindow.xaml.cs">
+      <DependentUpon>EventsHRWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HealthDocsHRWindow.xaml.cs">
+      <DependentUpon>HealthDocsHRWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HRWindow.xaml.cs">
+      <DependentUpon>HRWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalRulesHRWindow.xaml.cs">
+      <DependentUpon>InternalRulesHRWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JobOfferHRWindow.xaml.cs">
+      <DependentUpon>JobOfferHRWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OfficialJobHRWindow.xaml.cs">
+      <DependentUpon>OfficialJobHRWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtherLeaveWindow.xaml.cs">
       <DependentUpon>OtherLeaveWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PaidLeaveWindow.xaml.cs">
       <DependentUpon>PaidLeaveWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PayrollsWindow.xaml.cs">
+      <DependentUpon>PayrollsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PersonalFilesWindow.xaml.cs">
       <DependentUpon>PersonalFilesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptsWindow.xaml.cs">
+      <DependentUpon>ReceiptsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReferencesWindow.xaml.cs">
       <DependentUpon>ReferencesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SickLeaveWindow.xaml.cs">
       <DependentUpon>SickLeaveWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyHRWindow.xaml.cs">
+      <DependentUpon>SurveyHRWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="VehicleListWindow.xaml.cs">
       <DependentUpon>VehicleListWindow.xaml</DependentUpon>
@@ -178,11 +214,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CandidatesHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CertificatesHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContractListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CorporateDepartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CVsHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,6 +246,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EventsHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HealthDocsHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InternalRulesHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JobOfferHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -210,6 +278,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OfficialJobHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OtherLeaveWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,7 +290,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PayrollsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PersonalFilesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceiptsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,6 +307,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SickLeaveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SurveyHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

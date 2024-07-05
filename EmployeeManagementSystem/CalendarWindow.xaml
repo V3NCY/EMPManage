@@ -29,12 +29,27 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <!-- Year and month box design-->
+        <Style x:Key="StyledComboBox" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="BorderBrush" Value="{x:Static SystemColors.ActiveBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="2" Opacity="0.5" BlurRadius="5" />
+            </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <ComboBox x:Name="YearComboBox" Width="100" SelectionChanged="YearOrMonthChanged"/>
-            <ComboBox x:Name="MonthComboBox" Width="100" SelectionChanged="YearOrMonthChanged"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+            <ComboBox x:Name="YearComboBox" Width="150" Height="40" Style="{StaticResource StyledComboBox}" SelectionChanged="YearOrMonthChanged"/>
+            <ComboBox x:Name="MonthComboBox" Width="150" Height="40" Style="{StaticResource StyledComboBox}" SelectionChanged="YearOrMonthChanged" />
         </StackPanel>
 
         <Grid x:Name="CalendarGrid" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

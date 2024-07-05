@@ -114,27 +114,27 @@ namespace EmployeeManagementSystem
                 var contextMenu = new ContextMenu();
 
                 // Add color selection menu items on right click
-                var colorsMenu = new MenuItem { Header = "Select Color" };
-                AddColorMenuItem(colorsMenu, "Red", Brushes.Red);
-                AddColorMenuItem(colorsMenu, "LightBlue", Brushes.LightBlue);
-                AddColorMenuItem(colorsMenu, "LightGreen", Brushes.LightGreen);
-                AddColorMenuItem(colorsMenu, "Yellow", Brushes.Yellow);
+                var colorsMenu = new MenuItem { Header = "Избери цвят" };
+                AddColorMenuItem(colorsMenu, "Червен", Brushes.Red);
+                AddColorMenuItem(colorsMenu, "Син", Brushes.LightBlue);
+                AddColorMenuItem(colorsMenu, "Желен", Brushes.LightGreen);
+                AddColorMenuItem(colorsMenu, "Жълт", Brushes.Yellow);
 
                 contextMenu.Items.Add(colorsMenu);
 
-                var addNoteMenuItem = new MenuItem { Header = "Add Note" };
+                var addNoteMenuItem = new MenuItem { Header = "Добави бележка" };
                 addNoteMenuItem.Click += (s, e) => AddOrEditNote_Click(cell, noteIndicator, false);
                 contextMenu.Items.Add(addNoteMenuItem);
 
-                var editNoteMenuItem = new MenuItem { Header = "Edit Note" };
+                var editNoteMenuItem = new MenuItem { Header = "Редактирай бележка" };
                 editNoteMenuItem.Click += (s, e) => AddOrEditNote_Click(cell, noteIndicator, true);
                 contextMenu.Items.Add(editNoteMenuItem);
 
-                var deleteNoteMenuItem = new MenuItem { Header = "Delete Note" };
+                var deleteNoteMenuItem = new MenuItem { Header = "Изтрий бележка" };
                 deleteNoteMenuItem.Click += (s, e) => DeleteNote_Click(noteIndicator);
                 contextMenu.Items.Add(deleteNoteMenuItem);
 
-                var removeColorMenuItem = new MenuItem { Header = "Remove Color" };
+                var removeColorMenuItem = new MenuItem { Header = "Премахни цвят" };
                 removeColorMenuItem.Click += (s, e) => RemoveColor_Click(cell, isCurrentDate);
                 contextMenu.Items.Add(removeColorMenuItem);
 
@@ -184,7 +184,7 @@ namespace EmployeeManagementSystem
         {
             var noteWindow = new Window
             {
-                Title = isEdit ? "Edit Note" : "Add Note",
+                Title = isEdit ? "Редактирай бележка" : "Добави бележка",
                 Width = 500,
                 Height = 500,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
@@ -199,11 +199,11 @@ namespace EmployeeManagementSystem
                 Text = isEdit ? (string)noteIndicator.ToolTip : ""
             };
 
-            var saveButton = new Button { Content = "Save", Margin = new Thickness(10) };
+            var saveButton = new Button { Content = "Запази", Margin = new Thickness(10) };
             saveButton.Click += (s, e) =>
             {
                 var note = textBox.Text;
-                noteIndicator.Text = "Note Added";
+                noteIndicator.Text = "Бележката е добавена";
                 noteIndicator.ToolTip = note;
                 noteWindow.Close();
             };
@@ -243,16 +243,16 @@ namespace EmployeeManagementSystem
 
                     switch (colorName)
                     {
-                        case "Red":
+                        case "Червен":
                             border.Background = Brushes.Red;
                             break;
-                        case "LightBlue":
+                        case "Син":
                             border.Background = Brushes.LightBlue;
                             break;
-                        case "LightGreen":
+                        case "Желен":
                             border.Background = Brushes.LightGreen;
                             break;
-                        case "Yellow":
+                        case "Жълт":
                             border.Background = Brushes.Yellow;
                             break;
                     }

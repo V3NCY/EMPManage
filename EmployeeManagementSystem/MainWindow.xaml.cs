@@ -190,17 +190,90 @@ namespace EmployeeManagementSystem
             educationWindow.ShowDialog();
         }
 
-        private void OneCorporateDepartmentButtonClick(object sender, RoutedEventArgs e)
+        private void OnCorporateDepartmentButtonClick(object sender, RoutedEventArgs e)
         {
             CorporateDepartmentWindow corporateWindow = new CorporateDepartmentWindow();
             corporateWindow.ShowDialog();
         }
-        private void OneDevDepartmentButtonClick(object sender, RoutedEventArgs e)
+        private void OnDevDepartmentButtonClick(object sender, RoutedEventArgs e)
         {
             DevDepartmentWindow devWindow = new DevDepartmentWindow();
             devWindow.ShowDialog();
         }
 
+        //HR Features
+
+        private void HRToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            HRPopup.IsOpen = true;
+        }
+
+        private void OnSurveyButtonClick(object sender, RoutedEventArgs e)
+        {
+            SurveyHRWindow surveyWindow = new SurveyHRWindow();
+            surveyWindow.ShowDialog();
+        }
+
+        private void OnCandidatesButtonClick(object sender, RoutedEventArgs e)
+        {
+            CandidatesHRWindow candidatesWindow = new CandidatesHRWindow();
+            candidatesWindow.ShowDialog();
+        }
+
+        private void OnEventsButtonClick(object sender, RoutedEventArgs e)
+        {
+            EventsHRWindow eventsWindow = new EventsHRWindow();
+            eventsWindow.ShowDialog();
+        }
+        private void OnJobOffersButtonClick(object sender, RoutedEventArgs e)
+        {
+            JobOfferHRWindow jobOfferWindow = new JobOfferHRWindow();
+            jobOfferWindow.ShowDialog();
+        }
+        private void OnJobButtonClick(object sender, RoutedEventArgs e)
+        {
+            OfficialJobHRWindow officialJobOfferWindow = new OfficialJobHRWindow();
+            officialJobOfferWindow.ShowDialog();
+        }
+        private void OnCVsButtonClick(object sender, RoutedEventArgs e)
+        {
+            CVsHRWindow cvsWindow = new CVsHRWindow();
+            cvsWindow.ShowDialog();
+        }
+        private void OnInternalRulesButtonClick(object sender, RoutedEventArgs e)
+        {
+            InternalRulesHRWindow internalRulesWindow = new InternalRulesHRWindow();
+            internalRulesWindow.ShowDialog();
+        }
+        private void OnCertificatesButtonClick(object sender, RoutedEventArgs e)
+        {
+            CertificatesHRWindow certificatesWindow = new CertificatesHRWindow();
+            certificatesWindow.ShowDialog();
+        }
+        private void OnHealthDocsButtonClick(object sender, RoutedEventArgs e)
+        {
+            HealthDocsHRWindow healthDocsWindow = new HealthDocsHRWindow();
+            healthDocsWindow.ShowDialog();
+        }
+
+        //Payments Features
+
+        private void PaymentsToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            PaymentsPopup.IsOpen = true;
+        }
+
+        private void OnReceiptsButtonClick(object sender, RoutedEventArgs e)
+        {
+            ReceiptsWindow receiptsWindow = new ReceiptsWindow();
+            receiptsWindow.ShowDialog();
+        }
+
+        private void OnPayrollsButtonClick(object sender, RoutedEventArgs e)
+        {
+            PayrollsWindow payrollsWindow = new PayrollsWindow();
+            payrollsWindow.ShowDialog();
+        }
 
         //Close Features
         private void CloseAllPopups()
