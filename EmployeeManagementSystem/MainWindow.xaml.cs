@@ -12,7 +12,6 @@ namespace EmployeeManagementSystem
 
         }
       
-
         // Document Request Features
         private void OnSickLeaveRequestsButtonClick(object sender, RoutedEventArgs e)
         {
@@ -154,23 +153,7 @@ namespace EmployeeManagementSystem
             contractsWindow.ShowDialog();
         }
 
-        //Calendar Features
        
-        private void OnCalendarButtonClick(object sender, RoutedEventArgs e)
-        {
-            CalendarWindow calendarWindow = new CalendarWindow();
-            calendarWindow.ShowDialog();
-        }
-        //Calendar Features
-        private void EventCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Debug.WriteLine("SelectedDatesChanged event fired!");
-
-            foreach (var date in e.AddedItems)
-            {
-                Debug.WriteLine($"Selected Date: {date}");
-            }
-        }
         //Departments Features
 
         private void DepartmentsToggleButton_Checked(object sender, RoutedEventArgs e)
@@ -273,6 +256,28 @@ namespace EmployeeManagementSystem
         {
             PayrollsWindow payrollsWindow = new PayrollsWindow();
             payrollsWindow.ShowDialog();
+        }
+
+        //Calendar Features
+
+        private void CalendarToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CalendarPopup.IsOpen = true;
+        }
+
+        private void OnCalendarButtonClick(object sender, RoutedEventArgs e)
+        {
+            CalendarWindow calendarWindow = new CalendarWindow();
+            calendarWindow.ShowDialog();
+        }
+        private void EventCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Debug.WriteLine("SelectedDatesChanged event fired!");
+
+            foreach (var date in e.AddedItems)
+            {
+                Debug.WriteLine($"Selected Date: {date}");
+            }
         }
 
         //Close Features
