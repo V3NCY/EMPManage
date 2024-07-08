@@ -398,6 +398,7 @@ CornerRadius="6">
                 </Setter.Value>
             </Setter>
         </Style>
+        
     </Window.Resources>
     <Grid>
         <Image Source="Assets/worldwidemap.png" Stretch="Uniform"/>
@@ -489,17 +490,37 @@ CornerRadius="6">
                 <ToggleButton x:Name="HRToggleButton" Content="HR" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HRToggleButtonStyle}" Checked="HRToggleButton_Checked" />
                 <Popup x:Name="HRPopup" PlacementTarget="{Binding ElementName=HRToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
-                        <StackPanel>
-                            <Button Content="Анкети" Click="OnSurveyButtonClick" Margin="0,5"/>
-                            <Button Content="Кандидати за работа" Click="OnCandidatesButtonClick" Margin="0,5"/>
-                            <Button Content="Фирмени събития" Click="OnEventsButtonClick" Margin="0,5"/>
-                            <Button Content="Обяви за работа" Click="OnJobOffersButtonClick" Margin="0,5"/>
-                            <Button Content="Предложения за работа" Click="OnJobButtonClick" Margin="0,5"/>
-                            <Button Content="CVs" Click="OnCVsButtonClick" Margin="0,5"/>
-                            <Button Content="Правила за вътрешен ред" Click="OnInternalRulesButtonClick" Margin="0,5"/>
-                            <Button Content="Сертификати" Click="OnCertificatesButtonClick" Margin="0,5"/>
-                            <Button Content="Здраве и безопасност" Click="OnHealthDocsButtonClick" Margin="0,5"/>
-                        </StackPanel>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="270">
+                            <ScrollViewer.Resources>
+                                <!-- Custom ScrollBar Style -->
+                                <Style TargetType="ScrollBar">
+                                    <Setter Property="Width" Value="5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ScrollBar">
+                                                <Grid>
+                                                    <Border Background="#073764" CornerRadius="5"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ScrollViewer.Resources>
+                            <StackPanel>
+                                <Button Content="Списък ресурси" Click="OnHRButtonClick" Margin="0,5"/>
+                                <Button Content="Анкети" Click="OnSurveyButtonClick" Margin="0,5"/>
+                                <Button Content="Добави кандидат" Click="OnAddCandidateButtonClick" Margin="0,5"/>
+                                <Button Content="Кандидати за работа" Click="OnCandidatesButtonClick" Margin="0,5"/>
+                                <Button Content="Добави събитие" Click="OnAddEventButtonClick" Margin="0,5"/>
+                                <Button Content="Фирмени събития" Click="OnEventsButtonClick" Margin="0,5"/>
+                                <Button Content="Обяви за работа" Click="OnJobOffersButtonClick" Margin="0,5"/>
+                                <Button Content="Предложения за работа" Click="OnJobButtonClick" Margin="0,5"/>
+                                <Button Content="CVs" Click="OnCVsButtonClick" Margin="0,5"/>
+                                <Button Content="Правила за вътрешен ред" Click="OnInternalRulesButtonClick" Margin="0,5"/>
+                                <Button Content="Сертификати" Click="OnCertificatesButtonClick" Margin="0,5"/>
+                                <Button Content="Здраве и безопасност" Click="OnHealthDocsButtonClick" Margin="0,5"/>
+                            </StackPanel>
+                        </ScrollViewer>
                     </Border>
                 </Popup>
                 <!-- Calendar -->

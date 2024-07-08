@@ -92,11 +92,17 @@
     <Compile Include="AddAssessmentWindow.xaml.cs">
       <DependentUpon>AddAssessmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddCandidateHRWindow.xaml.cs">
+      <DependentUpon>AddCandidateHRWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddContractWindow.xaml.cs">
       <DependentUpon>AddContractWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddEmployeesWindow.xaml.cs">
       <DependentUpon>AddEmployeesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddEventHRWindow.xaml.cs">
+      <DependentUpon>AddEventHRWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddReferenceWindow.xaml.cs">
       <DependentUpon>AddReferenceWindow.xaml</DependentUpon>
@@ -198,11 +204,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddCandidateHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddContractWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddEmployeesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEventHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

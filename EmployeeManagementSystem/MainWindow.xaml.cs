@@ -245,6 +245,21 @@ namespace EmployeeManagementSystem
             healthDocsWindow.ShowDialog();
         }
 
+        private void OnHRButtonClick(object sender, RoutedEventArgs e)
+        {
+            HRWindow hrWindow = new HRWindow();
+            hrWindow.ShowDialog();
+        }
+        private void OnAddCandidateButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddCandidateHRWindow addCandidateWindow = new AddCandidateHRWindow();
+            addCandidateWindow.ShowDialog();
+        }
+        private void OnAddEventButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddEventHRWindow addEventWindow = new AddEventHRWindow();
+            addEventWindow.ShowDialog();
+        }
         //Payments Features
 
         private void PaymentsToggleButton_Checked(object sender, RoutedEventArgs e)
