@@ -26,39 +26,39 @@
     <Grid>
         <ScrollViewer>
             <StackPanel Margin="20">
-            <TextBlock Text="Добави атестация" FontWeight="Bold" FontSize="15" Margin="0,0,0,20"/>
+            <TextBlock Text="Добави атестация:" FontWeight="Bold" FontSize="15" Margin="0,0,0,20"/>
 
-            <Label Content="Име на служител" FontSize="15"/>
+            <Label Content="Име на служител:" FontSize="15"/>
             <TextBox x:Name="txtFirstName"/>
 
-            <Label Content="Фамилия на служител" FontSize="15"/>
+            <Label Content="Фамилия на служител:" FontSize="15"/>
             <TextBox x:Name="txtLastName"/>
 
-            <Label Content="Атестиращ" FontSize="15"/>
+            <Label Content="Атестиращ:" FontSize="15"/>
             <TextBox x:Name="txtAssessor"/>
 
-            <Label Content="Дата на атестация" FontSize="15"/>
+            <Label Content="Дата на атестация:" FontSize="15"/>
             <TextBox x:Name="txtAssessmentDate"/>
 
-            <Label Content="Длъжност" FontSize="15"/>
+            <Label Content="Длъжност:" FontSize="15"/>
             <TextBox x:Name="txtJobTitle"/>
 
-            <Label Content="Отдел" FontSize="15"/>
+            <Label Content="Отдел:" FontSize="15"/>
             <TextBox x:Name="txtDepartment"/>
 
-            <Label Content="Постижения по поставените цели" FontSize="15"/>
+            <Label Content="Постижения по поставените цели:" FontSize="15"/>
             <TextBox x:Name="txtAreasOfImprovement"/>
 
-            <Label Content="Оценка на представянето" FontSize="15"/>
+            <Label Content="Оценка на представянето:" FontSize="15"/>
             <TextBox x:Name="txtPerformanceRating"/>
 
-            <Label Content="Нужди от обучение" FontSize="15"/>
+            <Label Content="Нужди от обучение:" FontSize="15"/>
             <TextBox x:Name="txtTrainingNeeds"/>
 
-            <Label Content="Общи коментари" FontSize="15"/>
+            <Label Content="Общи коментари:" FontSize="15"/>
             <TextBox x:Name="txtOverallComments"/>
 
-            <Label Content="Следващи стъпки" FontSize="15"/>
+            <Label Content="Следващи стъпки:" FontSize="15"/>
             <TextBox x:Name="txtNextSteps"/>
 
             <Button Content="Добави"/>

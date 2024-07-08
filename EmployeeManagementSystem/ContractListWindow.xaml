@@ -9,56 +9,25 @@
     <Grid>
         <TabControl>
             <!-- Leave Requests Tab -->
-            <TabItem Header="Отпуски">
-                <ListView>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
-                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-            <TabItem Header="Болнични">
-                <ListView>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
-                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-            <TabItem Header="Банкова информация">
-                <ListView >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
-                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
+            
 
             <TabItem Header="Трудов договор">
                 <ListView >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
-                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
+                            <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Период" DisplayMemberBinding="{Binding Period}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
             </TabItem>
 
-            <TabItem Header="Други молби">
-                <ListView ItemsSource="{Binding SickLeaveRequests}">
+            <TabItem Header="Граждански договор">
+                <ListView >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
-                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
+                            <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Период" DisplayMemberBinding="{Binding Period}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
