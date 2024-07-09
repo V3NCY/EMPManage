@@ -260,6 +260,19 @@ namespace EmployeeManagementSystem
             AddEventHRWindow addEventWindow = new AddEventHRWindow();
             addEventWindow.ShowDialog();
         }
+
+        private void OnAddJobOfferButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddJobOfferHRWindow addJobOfferWindow = new AddJobOfferHRWindow();
+            addJobOfferWindow.ShowDialog();
+        }
+
+        private void OnAddSurveyButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddSurveyHRWindow addSurveyWindow = new AddSurveyHRWindow();
+            addSurveyWindow.ShowDialog();
+        }
+
         //Payments Features
 
         private void PaymentsToggleButton_Checked(object sender, RoutedEventArgs e)

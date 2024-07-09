@@ -89,8 +89,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddAssessmentWindow.xaml.cs">
-      <DependentUpon>AddAssessmentWindow.xaml</DependentUpon>
+    <Compile Include="AddAssessmentHRWindow.xaml.cs">
+      <DependentUpon>AddAssessmentHRWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddCandidateHRWindow.xaml.cs">
       <DependentUpon>AddCandidateHRWindow.xaml</DependentUpon>
@@ -104,8 +104,14 @@
     <Compile Include="AddEventHRWindow.xaml.cs">
       <DependentUpon>AddEventHRWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddJobOfferHRWindow.xaml.cs">
+      <DependentUpon>AddJobOfferHRWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddReferenceWindow.xaml.cs">
       <DependentUpon>AddReferenceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddSurveyHRWindow.xaml.cs">
+      <DependentUpon>AddSurveyHRWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddVehicleWindow.xaml.cs">
       <DependentUpon>AddVehicleWindow.xaml</DependentUpon>
@@ -122,14 +128,14 @@
     <Compile Include="ArchiveVehicleWindow.xaml.cs">
       <DependentUpon>ArchiveVehicleWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AssessmentListWindow.xaml.cs">
-      <DependentUpon>AssessmentListWindow.xaml</DependentUpon>
+    <Compile Include="AssessmentListHRWindow.xaml.cs">
+      <DependentUpon>AssessmentListHRWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CalendarWindow.xaml.cs">
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CandidatesHRWindow.xaml.cs">
-      <DependentUpon>CandidatesHRWindow.xaml</DependentUpon>
+    <Compile Include="CandidatesListHRWindow.xaml.cs">
+      <DependentUpon>CandidatesListHRWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CertificatesHRWindow.xaml.cs">
       <DependentUpon>CertificatesHRWindow.xaml</DependentUpon>
@@ -200,7 +206,7 @@
     <Compile Include="VehicleListWindow.xaml.cs">
       <DependentUpon>VehicleListWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddAssessmentWindow.xaml">
+    <Page Include="AddAssessmentHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,7 +226,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddJobOfferHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddReferenceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddSurveyHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,7 +258,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AssessmentListWindow.xaml">
+    <Page Include="AssessmentListHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -252,7 +266,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CandidatesHRWindow.xaml">
+    <Page Include="CandidatesListHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -393,5 +407,6 @@
     <Resource Include="Assets\worldwidemap.png" />
     <Resource Include="Assets\ТРЗorak.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

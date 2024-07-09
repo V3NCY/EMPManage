@@ -382,9 +382,9 @@ CornerRadius="6">
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border Background="{TemplateBinding Background}"
-BorderBrush="{TemplateBinding BorderBrush}"
-BorderThickness="{TemplateBinding BorderThickness}"
-CornerRadius="6">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="145,18,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
@@ -508,15 +508,17 @@ CornerRadius="6">
                             </ScrollViewer.Resources>
                             <StackPanel>
                                 <Button Content="Списък ресурси" Click="OnHRButtonClick" Margin="0,5"/>
+                                <Button Content="Добави анкета" Click="OnAddSurveyButtonClick" Margin="0,5"/>
                                 <Button Content="Анкети" Click="OnSurveyButtonClick" Margin="0,5"/>
                                 <Button Content="Добави кандидат" Click="OnAddCandidateButtonClick" Margin="0,5"/>
                                 <Button Content="Кандидати за работа" Click="OnCandidatesButtonClick" Margin="0,5"/>
                                 <Button Content="Добави събитие" Click="OnAddEventButtonClick" Margin="0,5"/>
                                 <Button Content="Фирмени събития" Click="OnEventsButtonClick" Margin="0,5"/>
                                 <Button Content="Обяви за работа" Click="OnJobOffersButtonClick" Margin="0,5"/>
+                                <Button Content="Добави предложение" Click="OnAddJobOfferButtonClick" Margin="0,5"/>
                                 <Button Content="Предложения за работа" Click="OnJobButtonClick" Margin="0,5"/>
                                 <Button Content="CVs" Click="OnCVsButtonClick" Margin="0,5"/>
-                                <Button Content="Правила за вътрешен ред" Click="OnInternalRulesButtonClick" Margin="0,5"/>
+                                <Button Content="Вътрешен ред" Click="OnInternalRulesButtonClick" Margin="0,5"/>
                                 <Button Content="Сертификати" Click="OnCertificatesButtonClick" Margin="0,5"/>
                                 <Button Content="Здраве и безопасност" Click="OnHealthDocsButtonClick" Margin="0,5"/>
                             </StackPanel>
