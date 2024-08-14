@@ -93,7 +93,7 @@ namespace EmployeeManagementSystem
                 var noteIndicator = new TextBlock
                 {
                     Text = "",
-                    Foreground = Brushes.Red,
+                    Foreground = Brushes.Green,
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
 
@@ -196,15 +196,25 @@ namespace EmployeeManagementSystem
                 AcceptsReturn = true,
                 VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
                 Margin = new Thickness(10),
-                Text = isEdit ? (string)noteIndicator.ToolTip : ""
+                Text = isEdit ? (string)noteIndicator.ToolTip : "",
+                Width = 460,
+                Height = 300,
             };
 
             var saveButton = new Button { Content = "Запази", Margin = new Thickness(10) };
             saveButton.Click += (s, e) =>
             {
                 var note = textBox.Text;
-                noteIndicator.Text = "Бележката е добавена";
-                noteIndicator.ToolTip = note;
+                if (string.IsNullOrWhiteSpace(note))
+                {
+                    noteIndicator.Text = ""; // Clear the note indicator text if the note is empty
+                    noteIndicator.ToolTip = null; // Also clear the tooltip
+                }
+                else
+                {
+                    noteIndicator.Text = "Бележката е добавена";
+                    noteIndicator.ToolTip = note;
+                }
                 noteWindow.Close();
             };
 
@@ -244,7 +254,7 @@ namespace EmployeeManagementSystem
                     switch (colorName)
                     {
                         case "Червен":
-                            border.Background = Brushes.Red;
+                            border.Background = Brushes.LightCoral;
                             break;
                         case "Син":
                             border.Background = Brushes.LightBlue;

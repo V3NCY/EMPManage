@@ -134,8 +134,8 @@
     <Compile Include="CalendarWindow.xaml.cs">
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CandidatesListHRWindow.xaml.cs">
-      <DependentUpon>CandidatesListHRWindow.xaml</DependentUpon>
+    <Compile Include="CandidatesHRWindow.xaml.cs">
+      <DependentUpon>CandidatesHRWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CertificatesHRWindow.xaml.cs">
       <DependentUpon>CertificatesHRWindow.xaml</DependentUpon>
@@ -266,7 +266,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CandidatesListHRWindow.xaml">
+    <Page Include="CandidatesHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
