@@ -399,6 +399,7 @@ CornerRadius="6">
             </Setter>
         </Style>
         
+        
     </Window.Resources>
     <Grid>
         <Image Source="Assets/worldwidemap.png" Stretch="Uniform"/>
@@ -423,10 +424,12 @@ CornerRadius="6">
                 <Popup x:Name="EmployeesPopup" PlacementTarget="{Binding ElementName=EmployeesToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
-                            <Button Content="Добави служител" Click="OnAddEmployeeButtonClick" Margin="0,5"/>
+                            <Button Content="Добави нов служител" Click="OnAddEmployeeButtonClick" Margin="0,5"/>
                             <Button Content="Списък служители" Click="OnEmployeeListButtonClick" Margin="0,5"/>
                             <Button Content="Архив служители" Click="OnArchiveListButtonClick" Margin="0,5"/>
-                            <Button Content="Досиета" Click="OnPersonalFilesButtonClick" Margin="0,5"/>                            
+                            <Button Content="Добави заплата" Click="OnAddRewardButtonClick" Margin="0,5"/>
+                            <Button Content="Добави бонус" Click="OnAddBonusButtonClick" Margin="0,5"/>
+                            <!-- <Button Content="Досиета" Click="OnPersonalFilesButtonClick" Margin="0,5"/>  -->                          
                         </StackPanel>
                     </Border>
                 </Popup>
@@ -441,11 +444,11 @@ CornerRadius="6">
                     </Border>
                 </Popup>
                 <!-- Documents -->
-                <ToggleButton x:Name="DocumentsToggleButton" Content="Документи" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource DocumentsToggleButtonStyle}" Checked="DocumentsToggleButton_Checked" />
+                <ToggleButton x:Name="DocumentsToggleButton" Content="Добави документи" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource DocumentsToggleButtonStyle}" Checked="DocumentsToggleButton_Checked" />
                 <Popup x:Name="DocumentsPopup" PlacementTarget="{Binding ElementName=DocumentsToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
-                            <Button Content="Списък с документи" Click="OnDocumentsListButtonClick" Margin="0,5"/>
+                            <!-- <Button Content="Списък с документи" Click="OnDocumentsListButtonClick" Margin="0,5"/> -->
                             <Button Content="Добави болничен" Click="OnSickLeaveRequestsButtonClick" Margin="0,5"/>
                             <Button Content="Добави молба" Click="OnOtherLeaveRequestsButtonClick" Margin="0,5"/>
                             <Button Content="Добави отпуск" Click="OnPaidLeaveRequestsButtonClick" Margin="0,5"/>                         
@@ -476,12 +479,12 @@ CornerRadius="6">
                 </Popup>
                
                 <!-- Contracts -->
-                <ToggleButton x:Name="ContractsToggleButton" Content="Договори" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ContractsToggleButtonStyle}" Checked="ContractsToggleButton_Checked" />
+                <ToggleButton x:Name="ContractsToggleButton" Content="Добави договори" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ContractsToggleButtonStyle}" Checked="ContractsToggleButton_Checked" />
                 <Popup x:Name="ContractsPopup" PlacementTarget="{Binding ElementName=ContractsToggleButton}" Placement="Bottom" IsOpen="False" StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165">
                         <StackPanel>
-                            <Button Content="Добави договор" Click="OnAddContractButtonClick" Margin="0,5"/>
-                            <Button Content="Списък с договори" Click="OnContractListButtonClick" Margin="0,5"/>
+                            <Button Content="Създай договор" Click="OnAddContractButtonClick" Margin="0,5"/>
+                           <!-- <Button Content="Списък с договори" Click="OnContractListButtonClick" Margin="0,5"/> -->
                         </StackPanel>
                     </Border>
                 </Popup>

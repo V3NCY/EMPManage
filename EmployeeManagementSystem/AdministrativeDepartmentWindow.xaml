@@ -6,6 +6,32 @@
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
         Title="Отдел Административен" WindowState="Maximized">
+    <Window.Resources>
+        
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#073763"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="0,1,0,0"/>
+
+        </Style>
+        <Style TargetType="ContextMenu">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="MenuItem">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+       
+
+    </Window.Resources>
     <Grid>
         <!-- Define Rows and Columns -->
         <Grid.RowDefinitions>
@@ -31,15 +57,16 @@
 
         <!-- Sidebar -->
         <StackPanel Grid.Row="1" Grid.Column="0" Background="#fafafa">
-            <Button Content="Управление на документи" Margin="5" Padding="10"/>
+            <Button Content="Управление на документи" Margin="5" Padding="10" Click="OnDocumentsListButtonClick"/>
             <Button Content="Досиета" Margin="5" Padding="10" Click="OnPersonalFilesButtonClick"/>
-            <Button Content="Възнагреждания" Margin="5" Padding="10"/>
+            <Button Content="Възнагреждания" Margin="5" Padding="10" Click="OnEmployeeRewardsButtonClick"/>
             <Button Content="Проекти и задачи" Margin="5" Padding="10"/>
             <Button Content="Финанси и бюджет" Margin="5" Padding="10"/>
             <Button Content="Комуникация и събития" Margin="5" Padding="10"/>
             <Button Content="Обучения и развитие" Margin="5" Padding="10"/>
             <Button Content="Правила и политики" Margin="5" Padding="10"/>
             <Button Content="Поддръжка и инфраструктура" Margin="5" Padding="10"/>
+            <Button Content="Договори" Margin="5" Padding="10" Click="OnContractListButtonClick"/>
         </StackPanel>
 
         <!-- Main Content Area -->

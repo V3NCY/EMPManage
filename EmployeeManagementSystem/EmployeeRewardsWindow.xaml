@@ -1,0 +1,66 @@
+﻿<Window x:Class="EmployeeManagementSystem.EmployeeRewardsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagementSystem"
+        mc:Ignorable="d"
+        Title="Възнаграждения" Height="600" Width="1000">
+
+    <Grid>
+        <!-- Define Rows and Columns -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header Row -->
+            <RowDefinition Height="*" />
+            <!-- Main Content Row -->
+            <RowDefinition Height="Auto"/>
+            <!-- Footer Row -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <!-- Sidebar Column -->
+            <ColumnDefinition Width="*"/>
+            <!-- Main Content Column -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Header Section -->
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="#073764" Height="60" VerticalAlignment="Center">
+            <TextBlock Text="Възнаграждения и бонуси на служтели в Орак" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <!-- Sidebar -->
+        <Border Grid.Row="1" Grid.Column="0" Background="#fafafa" Width="200" Margin="0" Padding="10">
+            <StackPanel>
+                <Button Content="Месечни възнаграждения" Margin="5" Padding="10" Background="#007ACC" Foreground="White" Click="OnMonthlyRewardsButtonClick"/>
+                <Button Content="Допълнителни бонуси" Margin="5" Padding="10" Background="#007ACC" Foreground="White" Click="OnAdditionalBonusesButtonClick"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+            <TabControl Name="MainContentTabControl">
+                <TabItem Header="Месечни възнаграждения">
+                    <StackPanel>
+                        <TextBlock Text="Списък" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <Button Content="Добави" Margin="5" Padding="10" Background="#007ACC" Foreground="White" Click="OnAddRewardButtonClick" />
+                        <DataGrid Name="RewardsDataGrid" AutoGenerateColumns="True" Height="400"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Допълнителни бонуси">
+                    <StackPanel>
+                        <TextBlock Text="Списък" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <Button Content="Добави" Margin="5" Padding="10" Background="#007ACC" Foreground="White" Click="OnAddBonusButtonClick"/>
+                        <DataGrid Name="BonusesDataGrid" AutoGenerateColumns="True" Height="400"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+        <!-- Footer Section -->
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#073764" Height="40" VerticalAlignment="Center">
+            <TextBlock Text="© 2024 ТРЗОрак" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>

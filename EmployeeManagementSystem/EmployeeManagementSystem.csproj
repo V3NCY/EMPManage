@@ -92,6 +92,9 @@
     <Compile Include="AddAssessmentHRWindow.xaml.cs">
       <DependentUpon>AddAssessmentHRWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddBonusWindow.xaml.cs">
+      <DependentUpon>AddBonusWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddCandidateHRWindow.xaml.cs">
       <DependentUpon>AddCandidateHRWindow.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,9 @@
     </Compile>
     <Compile Include="AddReferenceWindow.xaml.cs">
       <DependentUpon>AddReferenceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddRewardWindow.xaml.cs">
+      <DependentUpon>AddRewardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddSurveyHRWindow.xaml.cs">
       <DependentUpon>AddSurveyHRWindow.xaml</DependentUpon>
@@ -161,6 +167,9 @@
     <Compile Include="EmployeeListWindow.xaml.cs">
       <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeRewardsWindow.xaml.cs">
+      <DependentUpon>EmployeeRewardsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EventsHRWindow.xaml.cs">
       <DependentUpon>EventsHRWindow.xaml</DependentUpon>
     </Compile>
@@ -210,6 +219,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddBonusWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddCandidateHRWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +245,9 @@
     </Page>
     <Page Include="AddReferenceWindow.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddRewardWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddSurveyHRWindow.xaml">
@@ -299,6 +315,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeeListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeRewardsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

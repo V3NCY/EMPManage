@@ -1,0 +1,19 @@
+﻿<Window x:Class="EmployeeManagementSystem.AddBonusWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавяне на допълнителен бонус" Height="300" Width="400">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="ID:" Margin="0,0,0,5"/>
+            <TextBox Name="ID" Margin="0,0,0,10"/>
+            <TextBlock Text="Име на служителя:" Margin="0,0,0,5"/>
+            <TextBox Name="EmployeeNameTextBox" Margin="0,0,0,10"/>
+            <TextBlock Text="Дата:" Margin="0,0,0,5"/>
+            <TextBox Name="DateTextBox" Margin="0,0,0,10"/>
+            <TextBlock Text="Сума:" Margin="0,0,0,5"/>
+            <TextBox Name="BonusAmountTextBox" Margin="0,0,0,10"/>
+            <Button Content="Запази" Background="#073764" Foreground="White" Click="OnSaveButtonClick" Margin="0,0,0,5"/>
+            <Button Content="Отказ" Background="#073764" Foreground="White" Click="OnCancelButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -50,7 +50,7 @@ namespace EmployeeManagementSystem
         {
             EmployeeListWindow employeeListWindow = new EmployeeListWindow();
             employeeListWindow.Show();
-            CloseEmployeesPopup(); 
+            CloseEmployeesPopup();
             EmployeesToggleButton.IsChecked = false;
         }
 
@@ -59,7 +59,7 @@ namespace EmployeeManagementSystem
         {
             ArchiveListWindow archiveListWindow = new ArchiveListWindow();
             archiveListWindow.Show();
-            CloseEmployeesPopup(); 
+            CloseEmployeesPopup();
             EmployeesToggleButton.IsChecked = false;
         }
 
@@ -76,6 +76,7 @@ namespace EmployeeManagementSystem
         {
             DocumentsListWindow documentsListWindow = new DocumentsListWindow();
             documentsListWindow.Show();
+            CloseDocumentsPopup();
         }
 
         private void DocumentsToggleButton_Checked(object sender, RoutedEventArgs e)
@@ -163,7 +164,7 @@ namespace EmployeeManagementSystem
         {
             AddContractWindow addContractWindow = new AddContractWindow();
             addContractWindow.Show();
-            CloseContractsPopup(); 
+            CloseContractsPopup();
         }
 
         private void OnContractListButtonClick(object sender, RoutedEventArgs e)
@@ -184,7 +185,7 @@ namespace EmployeeManagementSystem
         {
             AdministrativeDepartmentWindow administrativeWindow = new AdministrativeDepartmentWindow();
             administrativeWindow.Show();
-            CloseDepartmentsPopup(); 
+            CloseDepartmentsPopup();
         }
 
         private void OnEducationDepartmentButtonClick(object sender, RoutedEventArgs e)
@@ -281,7 +282,7 @@ namespace EmployeeManagementSystem
         {
             AddCandidateHRWindow addCandidateWindow = new AddCandidateHRWindow();
             addCandidateWindow.Show();
-            CloseHRPopup(); 
+            CloseHRPopup();
         }
         private void OnAddEventButtonClick(object sender, RoutedEventArgs e)
         {
@@ -301,7 +302,7 @@ namespace EmployeeManagementSystem
         {
             AddSurveyHRWindow addSurveyWindow = new AddSurveyHRWindow();
             addSurveyWindow.Show();
-            CloseHRPopup(); 
+            CloseHRPopup();
         }
 
         //Payments Features
@@ -315,14 +316,14 @@ namespace EmployeeManagementSystem
         {
             ReceiptsWindow receiptsWindow = new ReceiptsWindow();
             receiptsWindow.Show();
-            ClosePaymentsPopup(); 
+            ClosePaymentsPopup();
         }
 
         private void OnPayrollsButtonClick(object sender, RoutedEventArgs e)
         {
             PayrollsWindow payrollsWindow = new PayrollsWindow();
             payrollsWindow.Show();
-            ClosePaymentsPopup(); 
+            ClosePaymentsPopup();
         }
 
         //Calendar Features
@@ -381,6 +382,20 @@ namespace EmployeeManagementSystem
             CloseAssessmentPopup();
         }
 
+        //Rewards and bonuses
+        private void OnAddRewardButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddRewardWindow addRewardWindow = new AddRewardWindow();
+            addRewardWindow.Show();
+            CloseEmployeesPopup();
+        }
+
+        private void OnAddBonusButtonClick(object sender, RoutedEventArgs e)
+        {
+            AddBonusWindow addBonusWindow = new AddBonusWindow();
+            addBonusWindow.Show();
+            CloseEmployeesPopup();
+        }
 
         //Close Features
 
@@ -446,5 +461,7 @@ namespace EmployeeManagementSystem
         {
             AssessmentPopup.IsOpen = false;
         }
+
+        
     }
 }
