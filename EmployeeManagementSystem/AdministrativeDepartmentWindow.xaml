@@ -7,6 +7,48 @@
         mc:Ignorable="d"
         Title="Отдел Административен" WindowState="Maximized">
     <Grid>
-        
+        <!-- Define Rows and Columns -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header Row -->
+            <RowDefinition Height="*" />
+            <!-- Main Content Row -->
+            <RowDefinition Height="Auto"/>
+            <!-- Footer Row -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <!-- Sidebar Column -->
+            <ColumnDefinition Width="*"/>
+            <!-- Main Content Column -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Header Section -->
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="#073764" Height="60" VerticalAlignment="Center">
+            <TextBlock Text="Отдел Административен" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <!-- Sidebar -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Background="#fafafa">
+            <Button Content="Управление на документи" Margin="5" Padding="10"/>
+            <Button Content="Персонал и възнагреждания" Margin="5" Padding="10"/>
+            <Button Content="Проекти и задачи" Margin="5" Padding="10"/>
+            <Button Content="Финанси и бюджет" Margin="5" Padding="10"/>
+            <Button Content="Комуникация и събития" Margin="5" Padding="10"/>
+            <Button Content="Обучения и развитие" Margin="5" Padding="10"/>
+            <Button Content="Правила и политики" Margin="5" Padding="10"/>
+            <Button Content="Поддръжка и инфраструктура" Margin="5" Padding="10"/>
+        </StackPanel>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+            <TextBlock Text="Основно съдържание" FontSize="18" FontWeight="Bold"/>
+        </Grid>
+
+        <!-- Footer Section -->
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#073764" Height="40" VerticalAlignment="Center">
+            <TextBlock Text="© 2024 ТРЗОрак" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
     </Grid>
 </Window>
