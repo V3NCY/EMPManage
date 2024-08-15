@@ -164,6 +164,9 @@
     <Compile Include="DocumentsListWindow.xaml.cs">
       <DependentUpon>DocumentsListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EducationCatalogueControl.xaml.cs">
+      <DependentUpon>EducationCatalogueControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EducationDepartmentWindow.xaml.cs">
       <DependentUpon>EducationDepartmentWindow.xaml</DependentUpon>
     </Compile>
@@ -232,6 +235,9 @@
     </Compile>
     <Compile Include="SurveyHRWindow.xaml.cs">
       <DependentUpon>SurveyHRWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TopicsUserControl.xaml.cs">
+      <DependentUpon>TopicsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="VehicleListWindow.xaml.cs">
       <DependentUpon>VehicleListWindow.xaml</DependentUpon>
@@ -332,6 +338,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DocumentsListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EducationCatalogueControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -436,6 +446,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SurveyHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TopicsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
