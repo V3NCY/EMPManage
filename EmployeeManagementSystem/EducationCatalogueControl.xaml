@@ -17,16 +17,17 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Header -->
-        <Border Grid.Row="0" Background="#073764" Height="60" VerticalAlignment="Center">
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="#073764" Height="60" VerticalAlignment="Center">
             <TextBlock Text="Каталог" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
         <!-- Main Content -->
-        <Grid Grid.Row="1" Margin="10">
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -34,14 +35,33 @@
 
             <!-- Controls -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0" Foreground="Gray" Text="Търси..." GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus"/>
-                <Button Content="Добави нов каталог" Click="OnAddNewCatalogClick" Background="#073764" Foreground="#fff" Width="150" Height="25" />
+                <TextBox x:Name="SearchTextBox"
+                     Width="200"
+                     Margin="0,0,10,0"
+                     Foreground="Gray"
+                     Text="Търси..."
+                     GotFocus="SearchTextBox_GotFocus"
+                     LostFocus="SearchTextBox_LostFocus"/>
+
+                <Button Content="Добави нов каталог" 
+                        Click="OnAddNewCatalogClick" 
+                        Background="#073764" 
+                        Foreground="#fff" 
+                        Width="150" 
+                        Height="25" />
             </StackPanel>
-
+            
             <!-- Data Display -->
-            <DataGrid x:Name="CatalogsDataGrid" Grid.Row="1" AutoGenerateColumns="True" Margin="0,10,0,0"/>
-
+            <ContentControl x:Name="ContentViewer" 
+                            Grid.Row="1" 
+                            Margin="0,10,0,0"/>
         </Grid>
-        <ContentControl x:Name="MainContentControl" Grid.Row="1" Grid.Column="1" Margin="10"/>
+
+        <!-- Archived Catalogs -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+            <TextBlock Text="Archived Catalogues" FontWeight="Bold" Margin="0,0,0,10"/>
+        </StackPanel>
+        
+        
     </Grid>
 </UserControl>
