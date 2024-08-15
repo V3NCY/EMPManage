@@ -22,7 +22,7 @@
 
         <!-- Header -->
         <Border Grid.Row="0" Background="#073764" Height="60" VerticalAlignment="Center">
-            <TextBlock Text="Education Catalogue" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="Каталог" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
         <!-- Main Content -->
