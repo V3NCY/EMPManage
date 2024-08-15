@@ -1,0 +1,73 @@
+﻿<Window x:Class="EmployeeManagementSystem.HoReCaDepartmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagementSystem"
+        mc:Ignorable="d"
+        Title="HoReCaDepartmentWindow" WindowState="Maximized">
+
+    <Grid>
+        <!-- Define color resources -->
+        <Grid.Resources>
+            <SolidColorBrush x:Key="PrimaryColor" Color="#073764"/>
+            <SolidColorBrush x:Key="SecondaryColor" Color="#fff"/>
+            <SolidColorBrush x:Key="AccentColor" Color="#073764"/>
+            <SolidColorBrush x:Key="HighlightColor" Color="#fff"/>
+        </Grid.Resources>
+
+        <!-- Header -->
+        <Border Background="{StaticResource PrimaryColor}" Height="60" VerticalAlignment="Top">
+            <DockPanel>
+                <TextBlock Text="HoReCa Department" FontSize="24" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="10"/>
+
+                <!-- Search Bar -->
+                <Grid Width="300" VerticalAlignment="Center" Margin="10" Background="{StaticResource HighlightColor}" DockPanel.Dock="Right">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Placeholder Text -->
+                    <TextBlock Text="Search..." Foreground="Gray" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" IsHitTestVisible="False"/>
+
+                    <!-- Actual TextBox -->
+                    <TextBox Margin="5,0,5,5" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Grid.Row="1"/>
+                </Grid>
+            </DockPanel>
+        </Border>
+
+        <!-- Main Grid -->
+        <Grid Margin="0,60,0,40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Navigation Panel -->
+            <Border Background="{StaticResource SecondaryColor}" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <Button Content="ХоРеКа" Click="OnDepartmentOverviewClick" Margin="5" Padding="10"/>
+                    <Button Content="Екип" Click="OnStaffManagementClick" Margin="5" Padding="10"/>
+                    <Button Content="Supplier List" Click="OnSupplierListClick" Margin="5" Padding="10"/>
+                    <Button Content="Inventory" Click="OnInventoryClick" Margin="5" Padding="10"/>
+                    <Button Content="Доклади" Click="OnReportsClick" Margin="5" Padding="10"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Main Content Area -->
+            <ContentControl Grid.Column="1" x:Name="MainContentArea" Margin="10">
+                <!-- Placeholder for dynamic content -->
+                <TextBlock Text="Select a section from the navigation panel." VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+            </ContentControl>
+        </Grid>
+
+        <!-- Footer -->
+        <Border Background="{StaticResource PrimaryColor}" Height="50" VerticalAlignment="Bottom">
+            <DockPanel>
+                <Button Content="Save" Click="OnSaveClick" Background="{StaticResource AccentColor}" Foreground="White" Margin="10" DockPanel.Dock="Right"/>
+                <Button Content="Cancel" Click="OnCancelClick" Background="{StaticResource AccentColor}" Foreground="White" Margin="10" DockPanel.Dock="Right"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>

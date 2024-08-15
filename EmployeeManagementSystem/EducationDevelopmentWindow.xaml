@@ -1,0 +1,72 @@
+﻿<Window x:Class="EmployeeManagementSystem.EducationDevelopmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagementSystem"
+        mc:Ignorable="d"
+        Title="Образование и Развитие" Height="600" Width="1000">
+
+    <Grid Margin="10">
+        <Grid.Resources>
+            <SolidColorBrush x:Key="PrimaryColor" Color="#073764"/>
+            <SolidColorBrush x:Key="AccentColor" Color="#F5F5F5"/>
+            <SolidColorBrush x:Key="ButtonColor" Color="#073764"/>
+        </Grid.Resources>
+
+        <Border Background="{StaticResource PrimaryColor}" Height="60" VerticalAlignment="Top" DockPanel.Dock="Top">
+            <TextBlock Text="Образование и Развитие" FontSize="22" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+
+        <DockPanel Margin="0,60,0,0">
+            <StackPanel Width="200" Background="{StaticResource AccentColor}" DockPanel.Dock="Left" Margin="10">
+                <TextBlock Text="Навигация" FontWeight="Bold" Margin="0,0,0,10" Foreground="{StaticResource PrimaryColor}"/>
+
+                <Button Content="Добави курс" Click="OnAddCourseClick" Margin="0,0,0,5" Background="{StaticResource ButtonColor}" Foreground="White"/>
+                <Button Content="Редактирай курс" Click="OnEditCourseClick" Margin="0,0,0,5" Background="{StaticResource ButtonColor}" Foreground="White"/>
+                <Button Content="Изтрий курс" Click="OnDeleteCourseClick" Margin="0,0,0,5" Background="{StaticResource ButtonColor}" Foreground="White"/>
+                <Button Content="Добави събитие" Click="OnAddEventClick" Margin="0,0,0,5" Background="{StaticResource ButtonColor}" Foreground="White"/>
+                <Button Content="Редактирай събитие" Click="OnEditEventClick" Margin="0,0,0,5" Background="{StaticResource ButtonColor}" Foreground="White"/>
+                <Button Content="Изтрий събитие" Click="OnDeleteEventClick" Margin="0,0,0,5" Background="{StaticResource ButtonColor}" Foreground="White"/>
+            </StackPanel>
+
+            <ContentControl DockPanel.Dock="Right">
+                <TabControl Margin="10">
+                    <TabItem Header="Курсове">
+                        <Grid>
+                            <DataGrid Name="CoursesDataGrid" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Тема" Binding="{Binding Topic}" Width="*"/>
+                                    <DataGridTextColumn Header="Кредити" Binding="{Binding Credits}" Width="*"/>
+                                    <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="*"/>
+                                    <DataGridTextColumn Header="Хотел" Binding="{Binding Hotel}" Width="*"/>
+                                    <DataGridTextColumn Header="Местоположение" Binding="{Binding Location}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Предстоящи събития">
+                        <Grid>
+                            <ListView Name="UpcomingEventsListView">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Събитие" DisplayMemberBinding="{Binding EventName}" Width="200"/>
+                                        <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding EventDate}" Width="150"/>
+                                        <GridViewColumn Header="Местоположение" DisplayMemberBinding="{Binding EventLocation}" Width="200"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="История на обучението">
+                        <Grid>
+                            <TextBlock Text="История на обученията ще бъде показана тук." VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </ContentControl>
+        </DockPanel>
+    </Grid>
+</Window>

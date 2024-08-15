@@ -176,6 +176,12 @@ namespace EmployeeManagementSystem
 
         //Departments Features
 
+        private void OnHoReCaButtonClick(object sender, RoutedEventArgs e)
+        {
+            HoReCaDepartmentWindow horecaWindow = new HoReCaDepartmentWindow();
+            horecaWindow.Show();
+            CloseDepartmentsPopup();
+        }
         private void DepartmentsToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             DepartmentsPopup.IsOpen = true;
@@ -304,6 +310,7 @@ namespace EmployeeManagementSystem
             addSurveyWindow.Show();
             CloseHRPopup();
         }
+
 
         //Payments Features
 

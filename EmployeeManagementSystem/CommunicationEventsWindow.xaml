@@ -1,0 +1,76 @@
+﻿<Window x:Class="EmployeeManagementSystem.CommunicationEventsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagementSystem"
+        mc:Ignorable="d"
+        Title="Събития и кореспонденции" Height="600" Width="1000">
+    <Grid Margin="10">
+        <!-- Define Row and Column Definitions -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Header Section -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Събития и кореспонденции" 
+                   Foreground="#073764" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,0,10" />
+
+        <!-- Dashboard Overview -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <Border Background="#f0f0f0" BorderBrush="#073764" BorderThickness="1" Margin="0,0,10,0" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Предстоящи събития" FontWeight="Bold" Foreground="#073764" FontSize="16"/>
+                </StackPanel>
+            </Border>
+            <Border Background="#f0f0f0" BorderBrush="#073764" BorderThickness="1" Margin="0,0,10,0" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Съобщения" FontWeight="Bold" Foreground="#073764" FontSize="16"/>
+                </StackPanel>
+            </Border>
+            <Border Background="#f0f0f0" BorderBrush="#073764" BorderThickness="1" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Задачи" FontWeight="Bold" Foreground="#073764" FontSize="16"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <!-- Task List -->
+        <GroupBox Grid.Row="2" Grid.Column="0" Header="Task List" Margin="0,10,10,0">
+            <ListBox Name="TaskListBox" Margin="10" SelectionChanged="OnTaskSelected">
+                <ListBoxItem Content="Материали за събитието" />
+                <ListBoxItem Content="Покани" />
+                <ListBoxItem Content="Бюджет" />
+                <ListBoxItem Content="Кетъринг" />
+            </ListBox>
+        </GroupBox>
+
+        <!-- Events Overview -->
+        <GroupBox Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Header="Описание" Margin="10,0,0,0">
+            <ListView Name="EventsListView" Margin="10">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Име на събитие" DisplayMemberBinding="{Binding EventName}" Width="120"/>
+                        <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding EventDate}" Width="80"/>
+                        <GridViewColumn Header="Локация" DisplayMemberBinding="{Binding EventLocation}" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <!-- Quick Communication Panel -->
+        <GroupBox Grid.Row="2" Grid.Column="1" Header="Бърза кореспонденция" Margin="10,10,0,0">
+            <StackPanel Margin="10">
+                <TextBlock Text="Изпрати съобщение" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                <TextBox Name="QuickMessageTextBox" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10"/>
+                <Button Content="Изпрати" Background="#073764" Foreground="White" HorizontalAlignment="Right" Click="OnSendMessageClick"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

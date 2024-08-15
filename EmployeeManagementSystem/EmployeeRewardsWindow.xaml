@@ -33,8 +33,8 @@
         <!-- Sidebar -->
         <Border Grid.Row="1" Grid.Column="0" Background="#fafafa" Width="200" Margin="0" Padding="10">
             <StackPanel>
-                <Button Content="Месечни възнаграждения" Margin="5" Padding="10" Background="#007ACC" Foreground="White" Click="OnMonthlyRewardsButtonClick"/>
-                <Button Content="Допълнителни бонуси" Margin="5" Padding="10" Background="#007ACC" Foreground="White" Click="OnAdditionalBonusesButtonClick"/>
+                <Button Content="Месечни възнаграждения" Margin="5" Padding="10" Background="#073764" Foreground="White" Click="OnMonthlyRewardsButtonClick"/>
+                <Button Content="Допълнителни бонуси" Margin="5" Padding="10" Background="#073764" Foreground="White" Click="OnAdditionalBonusesButtonClick"/>
             </StackPanel>
         </Border>
 
@@ -44,23 +44,19 @@
                 <TabItem Header="Месечни възнаграждения">
                     <StackPanel>
                         <TextBlock Text="Списък" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-                        <Button Content="Добави" Margin="5" Padding="10" Background="#007ACC" Foreground="White" Click="OnAddRewardButtonClick" />
+                        <Button Content="Добави" Margin="5" Padding="10" Background="#073764" Foreground="White" Click="OnAddRewardButtonClick" />
                         <DataGrid Name="RewardsDataGrid" AutoGenerateColumns="True" Height="400"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Допълнителни бонуси">
                     <StackPanel>
                         <TextBlock Text="Списък" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-                        <Button Content="Добави" Margin="5" Padding="10" Background="#007ACC" Foreground="White" Click="OnAddBonusButtonClick"/>
+                        <Button Content="Добави" Margin="5" Padding="10" Background="#073764" Foreground="White" Click="OnAddBonusButtonClick"/>
                         <DataGrid Name="BonusesDataGrid" AutoGenerateColumns="True" Height="400"/>
                     </StackPanel>
                 </TabItem>
             </TabControl>
         </Grid>
 
-        <!-- Footer Section -->
-        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#073764" Height="40" VerticalAlignment="Center">
-            <TextBlock Text="© 2024 ТРЗОрак" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Border>
     </Grid>
 </Window>

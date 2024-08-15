@@ -1,0 +1,41 @@
+﻿<Window x:Class="EmployeeManagementSystem.RulesAndPolicyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagementSystem"
+        mc:Ignorable="d"
+        Title="PolicyAndRulesWindow" Height="450" Width="800">
+
+    <Grid>
+        <!-- Define color resources -->
+        <Grid.Resources>
+            <SolidColorBrush x:Key="PrimaryColor" Color="#073764"/>
+            <SolidColorBrush x:Key="SecondaryColor" Color="#F0F0F0"/>
+            <SolidColorBrush x:Key="AccentColor" Color="#073764"/>
+        </Grid.Resources>
+
+        <!-- Header Section -->
+        <Border Background="{StaticResource PrimaryColor}" Height="50" VerticalAlignment="Top">
+            <TextBlock Text="Политики и Правила" FontSize="20" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+
+        <!-- Main Layout -->
+        <DockPanel Margin="0,50,0,0">
+            <!-- Sidebar for Navigation -->
+            <StackPanel Width="200" Background="{StaticResource SecondaryColor}" DockPanel.Dock="Left" Margin="10">
+                <TextBlock Text="Навигация" FontWeight="Bold" Margin="0,0,0,10" Foreground="{StaticResource PrimaryColor}"/>
+
+                <Button Content="Политика за конфиденциалност" Click="OnPrivacyPolicyClick" Margin="0,0,0,5" Background="{StaticResource AccentColor}" Foreground="White"/>
+                <Button Content="Политика за сигурност" Click="OnSecurityPolicyClick" Margin="0,0,0,5" Background="{StaticResource AccentColor}" Foreground="White"/>
+                <Button Content="Правила на работа" Click="OnWorkRulesClick" Margin="0,0,0,5" Background="{StaticResource AccentColor}" Foreground="White"/>
+                <Button Content="Политика за отпуск" Click="OnLeavePolicyClick" Margin="0,0,0,5" Background="{StaticResource AccentColor}" Foreground="White"/>
+            </StackPanel>
+
+            <!-- Content Area -->
+            <ContentControl DockPanel.Dock="Right" Margin="10">
+                <TextBlock Text="Изберете категория от лявата страна, за да видите подробности." VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+            </ContentControl>
+        </DockPanel>
+    </Grid>
+</Window>

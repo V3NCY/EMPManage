@@ -1,0 +1,63 @@
+﻿<Window x:Class="EmployeeManagementSystem.FinanceAndBudgetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagementSystem"
+        mc:Ignorable="d"
+        Title="Финанси и бюджет" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#073764" Padding="10" Grid.Row="0">
+            <TextBlock Text="Финанси и бюджет" Foreground="White" FontSize="16" FontWeight="Bold"/>
+        </Border>
+
+        <Border Background="#f0f0f0" Padding="10" Grid.Row="1">
+            <StackPanel>
+                <TextBlock Text="Описание" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBlock x:Name="TotalRevenueTextBlock" Text="Общо приходи: $123,456" Margin="0,0,0,2"/>
+                <TextBlock x:Name="TotalExpensesTextBlock" Text="Общо разходи: $78,900" Margin="0,0,0,2"/>
+                <TextBlock x:Name="NetIncomeTextBlock" Text="Нетна печалба: $44,556" Margin="0,0,0,5"/>
+                <Button Content="Виж подробности" Click="OnViewReportsClick" Background="#073764" Foreground="White"/>
+            </StackPanel>
+        </Border>
+
+        <Border Background="#ffffff" Grid.Row="2" Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Background="#e8e8e8" BorderBrush="#cccccc" BorderThickness="1" Padding="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Графики и диаграми" FontWeight="Bold"/>
+                </Border>
+
+                <Border Background="#f8f8f8" BorderBrush="#cccccc" BorderThickness="1" Padding="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Подробно описание" FontWeight="Bold"/>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Background="#fff" Padding="10" Grid.Row="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Добави запис" Click="OnAddRecordClick"  Margin="2" Padding="2" Background="#073764" Foreground="#fff"/>
+                <Button Content="Редактирай запис" Click="OnEditRecordClick" Margin="2" Padding="2" Background="#073764" Foreground="#fff"/>
+                <Button Content="Изтрий запис" Click="OnDeleteRecordClick" Margin="2" Padding="5" Background="#073764" Foreground="#fff"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -416,6 +416,7 @@ CornerRadius="6">
                             <Button Content="Образование" Click="OnEducationDepartmentButtonClick" Margin="0,5"/>
                             <Button Content="Корпоративен" Click="OnCorporateDepartmentButtonClick" Margin="0,5"/>
                             <Button Content="Развоен" Click="OnDevDepartmentButtonClick" Margin="0,5"/>
+                            <Button Content="ХоРеКа" Click="OnHoReCaButtonClick" Margin="0,5"/>
                         </StackPanel>
                     </Border>
                 </Popup>
