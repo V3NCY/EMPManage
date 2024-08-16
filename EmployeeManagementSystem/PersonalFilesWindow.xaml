@@ -24,7 +24,6 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="#CCCCCC"/>
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
-
         </Style>
         <Style TargetType="ContextMenu">
             <Setter Property="Background" Value="#F0F0F0"/>
@@ -43,14 +42,32 @@
             <Setter Property="Margin" Value="5"/>
         </Style>
     </Window.Resources>
-            <Grid>
-        <ListView x:Name="employeeListView" MouseDoubleClick="OnEmployeeDoubleClick">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" Width="50"/>
-                    <GridViewColumn Header="Име на служител"  Width="150"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+    <Grid>
+        <!-- Define rows for header, slider, and content -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header Row -->
+            <RowDefinition Height="Auto"/>
+            <!-- Slider Row -->
+            <RowDefinition Height="*"/>
+            <!-- Content Row -->
+        </Grid.RowDefinitions>
+
+        <!-- Header Row -->
+        <Border Grid.Row="0" Background="#073764" Height="60" VerticalAlignment="Center">
+            <TextBlock Text="Досиета" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <!-- Content Row -->
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="10">
+            <ListView x:Name="employeeListView" MouseDoubleClick="OnEmployeeDoubleClick">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="50"/>
+                        <GridViewColumn Header="Име на служител" Width="150"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </Window>

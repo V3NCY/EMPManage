@@ -24,7 +24,6 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="#CCCCCC"/>
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
-
         </Style>
         <Style TargetType="ContextMenu">
             <Setter Property="Background" Value="#F0F0F0"/>
@@ -42,34 +41,52 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
-
     </Window.Resources>
     <Grid>
-        <Slider x:Name="sliderLeaveDays" Minimum="0" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" Value="0"/>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <ListView Name="lvDocuments" ItemsSource="{Binding DocumentsList}" SelectionChanged="lvDocuments_SelectionChanged">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
-                        <GridViewColumn Header="Име на служител" DisplayMemberBinding="{Binding FullName}" Width="200"/>
-                        <GridViewColumn Header="Отпуски" DisplayMemberBinding="{Binding PaidLeave}" Width="200"/>
-                        <GridViewColumn Header="Болнични" DisplayMemberBinding="{Binding SickLeave}" Width="200"/>
-                        <GridViewColumn Header="Молби" DisplayMemberBinding="{Binding OtherLeave}" Width="200"/>
-                        <GridViewColumn Header="Атестации" DisplayMemberBinding="{Binding Assessments}" Width="200"/>
-                        <GridViewColumn Header="Оферти за работа" DisplayMemberBinding="{Binding JobOffer}" Width="200"/>
-                        <GridViewColumn Header="Предложения за работа" DisplayMemberBinding="{Binding OfficialJob}" Width="200"/>
-                        <GridViewColumn Header="CV-та" DisplayMemberBinding="{Binding CVs}" Width="200"/>
-                        
-                    </GridView>
-                </ListView.View>
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Архивирай" />
-                        <MenuItem Header="Редактирай" />
-                    </ContextMenu>
-                </ListView.ContextMenu>
-            </ListView>
-        </ScrollViewer>
-        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Margin="30"/>
+        <!-- Define rows for header and content -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header Row -->
+            <RowDefinition Height="Auto"/>
+            <!-- Slider Row -->
+            <RowDefinition Height="*"/>
+            <!-- Content Row -->
+        </Grid.RowDefinitions>
+
+        <!-- Header Row -->
+        <Border Grid.Row="0" Background="#073764" Height="60" VerticalAlignment="Center">
+            <TextBlock Text="Документи и служители" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <!-- Content Row -->
+        <Grid Grid.Row="2" Margin="10">
+            <!-- ScrollViewer with ListView -->
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
+                <ListView Name="lvDocuments" ItemsSource="{Binding DocumentsList}" SelectionChanged="lvDocuments_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
+                            <GridViewColumn Header="Име на служител" DisplayMemberBinding="{Binding FullName}" Width="200"/>
+                            <GridViewColumn Header="Отпуски" DisplayMemberBinding="{Binding PaidLeave}" Width="200"/>
+                            <GridViewColumn Header="Болнични" DisplayMemberBinding="{Binding SickLeave}" Width="200"/>
+                            <GridViewColumn Header="Молби" DisplayMemberBinding="{Binding OtherLeave}" Width="200"/>
+                            <GridViewColumn Header="Атестации" DisplayMemberBinding="{Binding Assessments}" Width="200"/>
+                            <GridViewColumn Header="Оферти за работа" DisplayMemberBinding="{Binding JobOffer}" Width="200"/>
+                            <GridViewColumn Header="Предложения за работа" DisplayMemberBinding="{Binding OfficialJob}" Width="200"/>
+                            <GridViewColumn Header="CV-та" DisplayMemberBinding="{Binding CVs}" Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Архивирай" />
+                            <MenuItem Header="Редактирай" />
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                </ListView>
+            </ScrollViewer>
+
+            <!-- Refresh Button -->
+            <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
+        </Grid>
     </Grid>
 </Window>

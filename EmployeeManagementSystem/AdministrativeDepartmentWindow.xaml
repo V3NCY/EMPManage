@@ -57,7 +57,7 @@
 
         <!-- Sidebar -->
         <StackPanel Grid.Row="1" Grid.Column="0" Background="#fafafa">
-            <Button Content="Управление на документи" Margin="5" Padding="10" Click="OnDocumentsListButtonClick"/>
+            <Button Content="Документи и служители" Margin="5" Padding="10" Click="OnDocumentsListButtonClick"/>
             <Button Content="Досиета" Margin="5" Padding="10" Click="OnPersonalFilesButtonClick"/>
             <Button Content="Възнагреждания" Margin="5" Padding="10" Click="OnEmployeeRewardsButtonClick"/>
             <Button Content="Проекти и задачи" Margin="5" Padding="10" Click="OnProjectsAndTasksButtonClick"/>
