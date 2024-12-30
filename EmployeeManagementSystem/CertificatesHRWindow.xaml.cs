@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for CertificatesHRWindow.xaml
-    /// </summary>
     public partial class CertificatesHRWindow : Window
     {
         public CertificatesHRWindow()

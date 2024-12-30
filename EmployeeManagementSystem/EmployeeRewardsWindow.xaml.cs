@@ -13,7 +13,6 @@ namespace EmployeeManagementSystem
 
         private void LoadData()
         {
-            //// Sample data for demonstration
             //var monthlyRewards = new List<EmployeeReward>
             //{
             //    new EmployeeReward { EmployeeName = "Иван Иванов", Month = "Януари", Amount = 1000 },
@@ -26,7 +25,6 @@ namespace EmployeeManagementSystem
             //    new EmployeeBonus { EmployeeName = "Мария Петрова", Date = "2024-08-01", BonusAmount = 150 }
             //};
 
-            //// Bind data to DataGrids
             //RewardsDataGrid.ItemsSource = monthlyRewards;
             //BonusesDataGrid.ItemsSource = additionalBonuses;
         }

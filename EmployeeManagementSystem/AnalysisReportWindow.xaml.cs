@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for AnalysisReportWindow.xaml
-    /// </summary>
     public partial class AnalysisReportWindow : Window
     {
         public AnalysisReportWindow()

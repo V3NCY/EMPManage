@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for AddSurveyHRWindow.xaml
-    /// </summary>
     public partial class AddSurveyHRWindow : Window
     {
         public AddSurveyHRWindow()

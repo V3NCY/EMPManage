@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for AssessmentListWindow.xaml
-    /// </summary>
     public partial class AssessmentListWindow : Window
     {
         public AssessmentListWindow()
@@ -25,7 +22,6 @@ namespace EmployeeManagementSystem
         }
         private void lvAssessments_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Handle selection change if needed
         }
     }
 }

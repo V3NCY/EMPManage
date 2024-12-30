@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for CommunicationEventsWindow.xaml
-    /// </summary>
     public partial class CommunicationEventsWindow : Window
     {
         public CommunicationEventsWindow()

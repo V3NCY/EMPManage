@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for SickLeaveWindow.xaml
-    /// </summary>
     public partial class SickLeaveWindow : Window
     {
         public SickLeaveWindow()

@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for PaidLeaveWindow.xaml
-    /// </summary>
     public partial class PaidLeaveWindow : Window
     {
         public PaidLeaveWindow()

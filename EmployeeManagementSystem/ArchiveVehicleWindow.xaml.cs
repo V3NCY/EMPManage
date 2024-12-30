@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for ArchiveVehicleWindow.xaml
-    /// </summary>
     public partial class ArchiveVehicleWindow : Window
     {
         public ArchiveVehicleWindow()

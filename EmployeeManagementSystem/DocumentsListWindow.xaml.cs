@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for DocumentsListWindow.xaml
-    /// </summary>
     public partial class DocumentsListWindow : Window
     {
         public DocumentsListWindow()

@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for ContractListWindow.xaml
-    /// </summary>
     public partial class ContractListWindow : Window
     {
         public ContractListWindow()

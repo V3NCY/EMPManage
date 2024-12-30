@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for ReferencesWindow.xaml
-    /// </summary>
     public partial class ReferencesWindow : Window
     {
         public ReferencesWindow()

@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for OtherLeaveWindow.xaml
-    /// </summary>
     public partial class OtherLeaveWindow : Window
     {
         public OtherLeaveWindow()

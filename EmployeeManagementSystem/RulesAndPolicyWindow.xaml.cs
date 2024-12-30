@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for PolicyAndRulesWindow.xaml
-    /// </summary>
     public partial class RulesAndPolicyWindow : Window
     {
         public RulesAndPolicyWindow()

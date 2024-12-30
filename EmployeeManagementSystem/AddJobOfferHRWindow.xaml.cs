@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for AddJobOfferHRWindow.xaml
-    /// </summary>
     public partial class AddJobOfferHRWindow : Window
     {
         public AddJobOfferHRWindow()

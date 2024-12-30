@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -6,30 +8,69 @@ namespace EmployeeManagementSystem
 {
     public partial class EmployeeListWindow : Window
     {
-        // Example list of employees (replace with your actual data source)
+        
         //private List<Employee> EmployeesList { get; set; }
 
         public EmployeeListWindow()
         {
             InitializeComponent();
-            //InitializeEmployeesList(); // Load or initialize employee data
-            //DataContext = this; // Set data context for binding
+            //InitializeEmployeesList(); 
+            //DataContext = this; 
+            LoadEmployees();
         }
+        // Method to load employees from the database
+        private void LoadEmployees()
+        {
+            string connectionString = "DSN=SSManagement32;Server=ORAK-VMANDULOVA;DatabaseName=DB-Employees;UID=dba;PWD=sql;";
+            string query = "SELECT EmployeeId, FirstName, LastName, EGN, JobTitle, Department FROM Employees";
+            List<Employee> employeesList = new List<Employee>();
 
+            try
+            {
+                using (OdbcConnection connection = new OdbcConnection(connectionString))
+                {
+                    connection.Open();
+                    using (OdbcCommand command = new OdbcCommand(query, connection))
+                    {
+                        using (OdbcDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                employeesList.Add(new Employee
+                                {
+                                    EmployeeId = reader.GetInt32(0),
+                                    FullName = $"{reader.GetString(1)} {reader.GetString(2)}", // Concatenate FirstName and LastName
+                                    EGN = reader.GetString(3),
+                                    JobTitle = reader.GetString(4),
+                                    Department = reader.GetString(5)
+                                });
+                            }
+                        }
+                    }
+                }
+
+                // Bind the employees list to the ListView
+                lvEmployees.ItemsSource = employeesList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
         //private void InitializeEmployeesList()
         //{
-        //    // Replace with actual logic to fetch employees from database or other source
+        //  
         //    EmployeesList = new List<Employee>
         //    {
         //        new Employee { EmployeeId = 1, FullName = "John Doe", EGN = "1234567890", JobTitle = "Developer", Department = "IT", RemainingLeaveDays = 20 },
         //        new Employee { EmployeeId = 2, FullName = "Jane Smith", EGN = "0987654321", JobTitle = "Manager", Department = "HR", RemainingLeaveDays = 15 }
-        //        // Add more employees as needed
+        //      
         //    };
         //}
 
         private void lvEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Handle selection change if needed
+            
         }
 
         //private void OnArchiveEmployeeClick(object sender, RoutedEventArgs e)
@@ -54,9 +95,16 @@ namespace EmployeeManagementSystem
 
         private void OnRefreshButtonClick(object sender, RoutedEventArgs e)
         {
-            // Refresh employee list (e.g., reload data from database)
-            //InitializeEmployeesList();
-            lvEmployees.Items.Refresh(); // Refresh the ListView
+            LoadEmployees(); // Refresh the employee list
         }
+        public class Employee
+        {
+            public int EmployeeId { get; set; }
+            public string FullName { get; set; }
+            public string EGN { get; set; }  
+            public string JobTitle { get; set; }  
+            public string Department { get; set; }  
+        }
+
     }
 }

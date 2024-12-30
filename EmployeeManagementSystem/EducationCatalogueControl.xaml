@@ -42,7 +42,7 @@
                      Text="Търси..."
                      GotFocus="SearchTextBox_GotFocus"
                      LostFocus="SearchTextBox_LostFocus"/>
-
+             
                 <Button Content="Добави нов каталог" 
                         Click="OnAddNewCatalogClick" 
                         Background="#073764" 

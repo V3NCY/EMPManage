@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for ReceiptsWindow.xaml
-    /// </summary>
     public partial class ReceiptsWindow : Window
     {
         public ReceiptsWindow()

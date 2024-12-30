@@ -8,9 +8,6 @@ using System.Windows;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
     }

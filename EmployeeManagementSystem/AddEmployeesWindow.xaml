@@ -42,8 +42,9 @@
             <Label Content="Отдел" FontSize="15"/>
             <TextBox x:Name="txtDepartment"/>
 
-            <Button Content="Добави"/>
-            <Button Content="ТЕСТ СВЪРЗАНОСТ" Padding="10" Margin="0,5,0,20" HorizontalAlignment="Left" />
+            <Button Content="Добави" Click="OnAddEmployeeButtonClick"/>
+            <Button Content="ТЕСТ СВЪРЗАНОСТ" Padding="10" Margin="0,5,0,20" HorizontalAlignment="Left" Click="OnTestConnectionButtonClick" />
+
         </StackPanel>
         
     </Grid>

@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for AddVehicleWindow.xaml
-    /// </summary>
     public partial class AddVehicleWindow : Window
     {
         public AddVehicleWindow()
