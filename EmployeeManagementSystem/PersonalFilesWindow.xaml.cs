@@ -31,5 +31,6 @@ namespace EmployeeManagementSystem
     {
         public int EmployeeId { get; set; }
         public string FullName { get; set; }
+        public string JobTitle { get; internal set; }
     }
 }

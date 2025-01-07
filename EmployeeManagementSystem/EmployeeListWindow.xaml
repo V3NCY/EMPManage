@@ -47,7 +47,7 @@
     <Grid>
         <Slider x:Name="sliderLeaveDays" Minimum="0" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" Value="0"/>
         <ScrollViewer HorizontalScrollBarVisibility="Auto">
-        <ListView Name="lvEmployees" ItemsSource="{Binding EmployeesList}" SelectionChanged="lvEmployees_SelectionChanged">
+            <ListView Name="lvEmployees" ItemsSource="{Binding EmployeesList}" SelectionChanged="lvEmployees_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
@@ -103,8 +103,8 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Архивирай" />
-                    <MenuItem Header="Редактирай" />
+                    <MenuItem Header="Архивирай" Click="OnArchiveEmployeeClick"/>
+                    <MenuItem Header="Редактирай" Click="OnEditButtonClick"/>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

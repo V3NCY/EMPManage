@@ -173,6 +173,9 @@
     <Compile Include="DocumentsListWindow.xaml.cs">
       <DependentUpon>DocumentsListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditEmployeeWindow.xaml.cs">
+      <DependentUpon>EditEmployeeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EducationCatalogueControl.xaml.cs">
       <DependentUpon>EducationCatalogueControl.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,7 @@
     <Compile Include="EducationDevelopmentWindow.xaml.cs">
       <DependentUpon>EducationDevelopmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Employee.cs" />
     <Compile Include="EmployeeListWindow.xaml.cs">
       <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
     </Compile>
@@ -347,6 +351,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DocumentsListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
