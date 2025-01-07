@@ -18,9 +18,13 @@ namespace EmployeeManagementSystem
             txtFullName.Text = Employee.FullName;
             txtJobTitle.Text = Employee.JobTitle;
             txtDepartment.Text = Employee.Department;
+            txtEGN.Text = Employee.EGN;
+
+            // Disable EGN editing by default
+            txtEGN.IsEnabled = false;
         }
 
-        //Special EGN permission Button
+        // Special EGN Permission Button
         private void OnRequestEgnEditClick(object sender, RoutedEventArgs e)
         {
             var inputDialog = new PermissionDialog();
@@ -34,6 +38,7 @@ namespace EmployeeManagementSystem
                 MessageBox.Show("Permission denied. You cannot edit the EGN.");
             }
         }
+
         // Cancel button handler
         private void OnCancelClick(object sender, RoutedEventArgs e)
         {
@@ -54,6 +59,7 @@ namespace EmployeeManagementSystem
             }
         }
 
+        // Save button handler
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
             // Check if any changes were made
@@ -72,7 +78,7 @@ namespace EmployeeManagementSystem
             // Save old values before updating the employee object
             string oldFullName = Employee.FullName;
             string oldJobTitle = Employee.JobTitle;
-            string oldDepartment = Employee.Department; // Capture the old department
+            string oldDepartment = Employee.Department;
             string oldEGN = Employee.EGN;
 
             // Update the employee object with new values
@@ -93,6 +99,7 @@ namespace EmployeeManagementSystem
             Close();
         }
 
+        // Update employee in the database and log changes
         private void UpdateEmployeeInDatabase(LocalEmployee employee, string oldFullName, string oldJobTitle, string oldEGN, string oldDepartment)
         {
             string connectionString = "DSN=SSManagement32;Server=ORAK-VMANDULOVA;DatabaseName=DB-Employees;UID=dba;PWD=sql;";
@@ -112,7 +119,7 @@ namespace EmployeeManagementSystem
                         logCommand.Parameters.AddWithValue("@OldFullName", oldFullName);
                         logCommand.Parameters.AddWithValue("@OldJobTitle", oldJobTitle);
                         logCommand.Parameters.AddWithValue("@OldEGN", oldEGN);
-                        logCommand.Parameters.AddWithValue("@OldDepartment", oldDepartment); // Ensure old department is logged
+                        logCommand.Parameters.AddWithValue("@OldDepartment", oldDepartment);
                         logCommand.Parameters.AddWithValue("@ChangeDate", DateTime.Now);
 
                         logCommand.ExecuteNonQuery();
@@ -129,7 +136,7 @@ namespace EmployeeManagementSystem
                         updateCommand.Parameters.AddWithValue("@FirstName", firstName);
                         updateCommand.Parameters.AddWithValue("@LastName", lastName);
                         updateCommand.Parameters.AddWithValue("@JobTitle", employee.JobTitle);
-                        updateCommand.Parameters.AddWithValue("@Department", employee.Department); // New department
+                        updateCommand.Parameters.AddWithValue("@Department", employee.Department);
                         updateCommand.Parameters.AddWithValue("@EGN", employee.EGN);
                         updateCommand.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
 
@@ -142,7 +149,5 @@ namespace EmployeeManagementSystem
                 MessageBox.Show($"Error saving changes to the database: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
     }
 }

@@ -36,17 +36,16 @@
     </Window.Resources>
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <ListView Name="lvArchivedEmployees" >
+            <ListView Name="lvArchivedEmployees">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID"  Width="50"/>
-                        <GridViewColumn Header="Име на служител" Width="200"/>
-                        <GridViewColumn Header="Длъжност"  Width="200"/>
-                        <GridViewColumn Header="Отдел"  Width="200"/>
-                        <GridViewColumn Header="Оставащи дни от отпуска" Width="200"/>
-                        <GridViewColumn Header="Платен отпуск"  Width="200"/>
-                        <GridViewColumn Header="Неплатен отпуск"  Width="200"/>
-                        <GridViewColumn Header="Друг отпуск"  Width="200"/>
+                        <GridViewColumn Header="Archive ID" DisplayMemberBinding="{Binding ArchiveId}" Width="50"/>
+                        <GridViewColumn Header="Employee ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
+                        <GridViewColumn Header="Име на служител" DisplayMemberBinding="{Binding FullName}" Width="200"/>
+                        <GridViewColumn Header="EGN" DisplayMemberBinding="{Binding EGN}" Width="150"/>
+                        <GridViewColumn Header="Длъжност" DisplayMemberBinding="{Binding JobTitle}" Width="200"/>
+                        <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding Department}" Width="200"/>
+                        <GridViewColumn Header="Дата на архивиране" DisplayMemberBinding="{Binding ArchivedDate}" Width="200"/>
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>
