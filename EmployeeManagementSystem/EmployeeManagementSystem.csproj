@@ -228,6 +228,9 @@
     <Compile Include="PayrollsWindow.xaml.cs">
       <DependentUpon>PayrollsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PermissionDialog.xaml.cs">
+      <DependentUpon>PermissionDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PersonalFilesWindow.xaml.cs">
       <DependentUpon>PersonalFilesWindow.xaml</DependentUpon>
     </Compile>
@@ -435,6 +438,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PayrollsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PermissionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
