@@ -5,61 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="CalendarWindow" WindowState="Maximized">
+        Title="CalendarWindow" WindowState="Maximized" Background="#f7f7f7">
+
     <Window.Resources>
-        <!-- Style for the calendar cells -->
+        <!-- Style for Calendar Cells -->
         <Style x:Key="CalendarCellStyle" TargetType="Border">
             <Setter Property="Background" Value="White" />
-            <Setter Property="BorderBrush" Value="{x:Static SystemColors.ActiveBorderBrush}" />
+            <Setter Property="BorderBrush" Value="#E0E0E0" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Margin" Value="1" />
-            <Setter Property="CornerRadius" Value="8" />
-            <!-- Rounded corners -->
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="CornerRadius" Value="12" />
             <Setter Property="Padding" Value="5" />
-            <!-- Padding inside the cell -->
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="2" Opacity="0.5" BlurRadius="5" />
+                    <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="2" Opacity="0.3" BlurRadius="5" />
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <!-- Hover effect -->
+                <!-- Hover effect with color change -->
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightBlue" />
+                    <Setter Property="Background" Value="#E3F2FD" />
+                    <Setter Property="Cursor" Value="Hand"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <!-- Year and month box design-->
+
+        <!-- Event Badge Style (Colored Dots for Events) -->
+        <Style x:Key="EventBadgeStyle" TargetType="Ellipse">
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Height" Value="10" />
+            <Setter Property="Fill" Value="#FF6F61" />
+            <!-- Default red color -->
+            <Setter Property="Margin" Value="0,2" />
+        </Style>
+
+        <!-- ComboBox style for Year and Month -->
         <Style x:Key="StyledComboBox" TargetType="ComboBox">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="FontStyle" Value="Normal"/>
-            <Setter Property="Padding" Value="5" />
-            <Setter Property="Margin" Value="10" />
-            <Setter Property="BorderBrush" Value="{x:Static SystemColors.ActiveBorderBrush}"/>
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="2" Opacity="0.5" BlurRadius="5" />
-            </Setter.Value>
-            </Setter>
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="BorderBrush" Value="#2196F3" />
+            <Setter Property="BorderThickness" Value="2" />
         </Style>
     </Window.Resources>
 
-    <StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
-            <ComboBox x:Name="YearComboBox" Width="150" Height="40" Style="{StaticResource StyledComboBox}" SelectionChanged="YearOrMonthChanged"/>
-            <ComboBox x:Name="MonthComboBox" Width="150" Height="40" Style="{StaticResource StyledComboBox}" SelectionChanged="YearOrMonthChanged" />
+    <Grid Margin="20">
+        <!-- Year and Month Selection -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBox x:Name="YearComboBox" Width="150" Height="45" Style="{StaticResource StyledComboBox}" SelectionChanged="YearOrMonthChanged"/>
+            <ComboBox x:Name="MonthComboBox" Width="150" Height="45" Style="{StaticResource StyledComboBox}" SelectionChanged="YearOrMonthChanged"/>
         </StackPanel>
 
-        <Grid x:Name="CalendarGrid" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!-- Calendar Grid -->
+        <Grid x:Name="CalendarGrid" Margin="0,60,20,20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="100" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -71,5 +76,5 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
         </Grid>
-    </StackPanel>
+    </Grid>
 </Window>

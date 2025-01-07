@@ -3,8 +3,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
+using System.Collections.Generic;
 using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
@@ -12,6 +12,8 @@ namespace EmployeeManagementSystem
     public partial class CalendarWindow : Window, INotifyPropertyChanged
     {
         private DateTime _currentDate;
+        private Dictionary<DateTime, string> _events;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public CalendarWindow()
@@ -19,15 +21,18 @@ namespace EmployeeManagementSystem
             InitializeComponent();
             PopulateYearAndMonthComboBoxes();
             _currentDate = DateTime.Now;
+            _events = new Dictionary<DateTime, string>(); // Initialize events dictionary
             DataContext = this;
             CreateCalendar(_currentDate);
         }
 
+        // Notify property change for dynamic UI updates
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        // Populate year and month ComboBoxes
         private void PopulateYearAndMonthComboBoxes()
         {
             int currentYear = DateTime.Now.Year;
@@ -35,15 +40,16 @@ namespace EmployeeManagementSystem
             {
                 YearComboBox.Items.Add(year);
             }
-            YearComboBox.SelectedIndex = 0; // Select current year by default
+            YearComboBox.SelectedIndex = 0; // Default to current year
 
             for (int month = 1; month <= 12; month++)
             {
                 MonthComboBox.Items.Add(new DateTime(1, month, 1).ToString("MMMM"));
             }
-            MonthComboBox.SelectedIndex = DateTime.Now.Month - 1; // Select current month by default
+            MonthComboBox.SelectedIndex = DateTime.Now.Month - 1; // Default to current month
         }
 
+        // Event handler for year or month changes
         private void YearOrMonthChanged(object sender, SelectionChangedEventArgs e)
         {
             if (YearComboBox.SelectedItem != null && MonthComboBox.SelectedItem != null)
@@ -56,15 +62,21 @@ namespace EmployeeManagementSystem
             }
         }
 
+        // Create the calendar grid dynamically
         private void CreateCalendar(DateTime date)
         {
-            CalendarGrid.Children.Clear();
+            CalendarGrid.Children.Clear(); // Clear previous cells
+
+            if (_events == null)  // Ensure the _events dictionary is initialized
+            {
+                _events = new Dictionary<DateTime, string>(); // Initialize it if it is null
+            }
 
             int daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
             DateTime firstDayOfMonth = new DateTime(date.Year, date.Month, 1);
             int startDay = (int)firstDayOfMonth.DayOfWeek;
 
-            int row = 1;
+            int row = 0;
             int col = startDay;
 
             for (int day = 1; day <= daysInMonth; day++)
@@ -72,7 +84,7 @@ namespace EmployeeManagementSystem
                 var cell = new Border
                 {
                     Style = (Style)this.Resources["CalendarCellStyle"],
-                    Background = Brushes.White // Default background color
+                    Background = Brushes.White
                 };
 
                 var cellContent = new StackPanel
@@ -85,62 +97,55 @@ namespace EmployeeManagementSystem
                 var dateText = new TextBlock
                 {
                     Text = day.ToString(),
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    FontSize = 17, // Set font size
-                    FontWeight = FontWeights.Normal // Set font weight
-                };
-
-                var noteIndicator = new TextBlock
-                {
-                    Text = "",
-                    Foreground = Brushes.Green,
-                    HorizontalAlignment = HorizontalAlignment.Center
+                    Style = (Style)this.Resources["DayTextStyle"]
                 };
 
                 cellContent.Children.Add(dateText);
-                cellContent.Children.Add(noteIndicator);
+
+                // Check if there are events for the current day and display the indicator (colored dot)
+                DateTime eventDate = date.AddDays(day - 1); // Calculate the exact date
+                if (_events.ContainsKey(eventDate))
+                {
+                    var eventIndicator = new Ellipse
+                    {
+                        Style = (Style)this.Resources["EventBadgeStyle"],
+                        Fill = Brushes.Green, // You can customize the color for events
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+                    cellContent.Children.Add(eventIndicator);
+                }
 
                 cell.Child = cellContent;
 
-                bool isCurrentDate = date.Year == DateTime.Now.Year && date.Month == DateTime.Now.Month && day == DateTime.Now.Day;
-                if (isCurrentDate)
+                // Highlight today’s date
+                if (date.Year == DateTime.Now.Year && date.Month == DateTime.Now.Month && day == DateTime.Now.Day)
                 {
-                    cell.Background = Brushes.Lavender; // Highlight current date
+                    cell.Background = Brushes.LightSteelBlue; // Light color for today's date
                 }
+
+                // Context menu for adding/editing/removing events
+                var contextMenu = new ContextMenu();
+
+                var addEventMenuItem = new MenuItem { Header = "Add Event" };
+                addEventMenuItem.Click += (s, e) => ShowAddEventDialog(eventDate, day, cell);
+                contextMenu.Items.Add(addEventMenuItem);
+
+                if (_events.ContainsKey(eventDate))
+                {
+                    var editEventMenuItem = new MenuItem { Header = "Edit Event" };
+                    editEventMenuItem.Click += (s, e) => ShowAddEventDialog(eventDate, day, cell);
+                    contextMenu.Items.Add(editEventMenuItem);
+                }
+
+                var removeEventMenuItem = new MenuItem { Header = "Remove Event" };
+                removeEventMenuItem.Click += (s, e) => RemoveEvent(eventDate);
+                contextMenu.Items.Add(removeEventMenuItem);
+
+                cell.ContextMenu = contextMenu;
 
                 Grid.SetRow(cell, row);
                 Grid.SetColumn(cell, col);
-
-                var contextMenu = new ContextMenu();
-
-                // Add color selection menu items on right click
-                var colorsMenu = new MenuItem { Header = "Избери цвят" };
-                AddColorMenuItem(colorsMenu, "Червен", Brushes.Red);
-                AddColorMenuItem(colorsMenu, "Син", Brushes.LightBlue);
-                AddColorMenuItem(colorsMenu, "Желен", Brushes.LightGreen);
-                AddColorMenuItem(colorsMenu, "Жълт", Brushes.Yellow);
-
-                contextMenu.Items.Add(colorsMenu);
-
-                var addNoteMenuItem = new MenuItem { Header = "Добави бележка" };
-                addNoteMenuItem.Click += (s, e) => AddOrEditNote_Click(cell, noteIndicator, false);
-                contextMenu.Items.Add(addNoteMenuItem);
-
-                var editNoteMenuItem = new MenuItem { Header = "Редактирай бележка" };
-                editNoteMenuItem.Click += (s, e) => AddOrEditNote_Click(cell, noteIndicator, true);
-                contextMenu.Items.Add(editNoteMenuItem);
-
-                var deleteNoteMenuItem = new MenuItem { Header = "Изтрий бележка" };
-                deleteNoteMenuItem.Click += (s, e) => DeleteNote_Click(noteIndicator);
-                contextMenu.Items.Add(deleteNoteMenuItem);
-
-                var removeColorMenuItem = new MenuItem { Header = "Премахни цвят" };
-                removeColorMenuItem.Click += (s, e) => RemoveColor_Click(cell, isCurrentDate);
-                contextMenu.Items.Add(removeColorMenuItem);
-
-                cell.ContextMenu = contextMenu;
-                UpdateContextMenu(cell, isCurrentDate);
-
                 CalendarGrid.Children.Add(cell);
 
                 col++;
@@ -152,41 +157,14 @@ namespace EmployeeManagementSystem
             }
         }
 
-        private void AddColorMenuItem(MenuItem parentMenu, string colorName, Brush colorBrush)
+        // Show dialog for adding/editing events
+        private void ShowAddEventDialog(DateTime date, int day, Border cell)
         {
-            var colorMenuItem = new MenuItem();
-
-            var stackPanel = new StackPanel { Orientation = Orientation.Horizontal };
-            var colorRectangle = new Rectangle
+            var eventDialog = new Window
             {
-                Width = 16,
-                Height = 16,
-                Fill = colorBrush,
-                Margin = new Thickness(0, 0, 5, 0)
-            };
-            var textBlock = new TextBlock { Text = colorName };
-
-            stackPanel.Children.Add(colorRectangle);
-            stackPanel.Children.Add(textBlock);
-
-            colorMenuItem.Header = stackPanel;
-            colorMenuItem.Click += ColorMenuItem_Click;
-
-            parentMenu.Items.Add(colorMenuItem);
-        }
-
-        private void UpdateCurrentDate()
-        {
-            OnPropertyChanged(nameof(IsCurrentDate));
-        }
-
-        private void AddOrEditNote_Click(Border cell, TextBlock noteIndicator, bool isEdit)
-        {
-            var noteWindow = new Window
-            {
-                Title = isEdit ? "Редактирай бележка" : "Добави бележка",
-                Width = 500,
-                Height = 500,
+                Title = "Add/Edit Event",
+                Width = 400,
+                Height = 250,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
 
@@ -195,93 +173,53 @@ namespace EmployeeManagementSystem
             {
                 AcceptsReturn = true,
                 VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                Width = 350,
+                Height = 150,
                 Margin = new Thickness(10),
-                Text = isEdit ? (string)noteIndicator.ToolTip : "",
-                Width = 460,
-                Height = 300,
+                Text = _events.ContainsKey(date) ? _events[date] : ""
             };
 
-            var saveButton = new Button { Content = "Запази", Margin = new Thickness(10) };
+            var saveButton = new Button { Content = "Save", Margin = new Thickness(10) };
             saveButton.Click += (s, e) =>
             {
-                var note = textBox.Text;
-                if (string.IsNullOrWhiteSpace(note))
+                var eventText = textBox.Text;
+                if (string.IsNullOrWhiteSpace(eventText))
                 {
-                    noteIndicator.Text = ""; // Clear the note indicator text if the note is empty
-                    noteIndicator.ToolTip = null; // Also clear the tooltip
+                    _events.Remove(date); // Remove the event if the text is empty
                 }
                 else
                 {
-                    noteIndicator.Text = "Бележката е добавена";
-                    noteIndicator.ToolTip = note;
+                    _events[date] = eventText; // Add or update the event
                 }
-                noteWindow.Close();
+
+                eventDialog.Close();
+                CreateCalendar(_currentDate); // Refresh the calendar to reflect changes
             };
 
             stackPanel.Children.Add(textBox);
             stackPanel.Children.Add(saveButton);
 
-            noteWindow.Content = stackPanel;
-            noteWindow.ShowDialog();
+            eventDialog.Content = stackPanel;
+            eventDialog.ShowDialog();
         }
 
-        private void DeleteNote_Click(TextBlock noteIndicator)
+        // Remove an event
+        private void RemoveEvent(DateTime date)
         {
-            noteIndicator.Text = "";
-            noteIndicator.ToolTip = null;
-        }
-
-        private void RemoveColor_Click(Border cell, bool isCurrentDate)
-        {
-            if (!isCurrentDate)
+            if (_events.ContainsKey(date))
             {
-                cell.Background = Brushes.White;
-                UpdateContextMenu(cell, isCurrentDate);
+                _events.Remove(date);
+                CreateCalendar(_currentDate); // Refresh the calendar after removal
             }
         }
 
-        private void ColorMenuItem_Click(object sender, RoutedEventArgs e)
+        // Method to update current date property
+        private void UpdateCurrentDate()
         {
-            if (sender is MenuItem menuItem && menuItem.Parent is MenuItem parentMenu)
-            {
-                Border border = ((ContextMenu)parentMenu.Parent).PlacementTarget as Border;
-                if (border != null)
-                {
-                    var stackPanel = (StackPanel)menuItem.Header;
-                    var textBlock = (TextBlock)stackPanel.Children[1];
-                    var colorName = textBlock.Text;
-
-                    switch (colorName)
-                    {
-                        case "Червен":
-                            border.Background = Brushes.LightCoral;
-                            break;
-                        case "Син":
-                            border.Background = Brushes.LightBlue;
-                            break;
-                        case "Желен":
-                            border.Background = Brushes.LightGreen;
-                            break;
-                        case "Жълт":
-                            border.Background = Brushes.Yellow;
-                            break;
-                    }
-
-                    UpdateContextMenu(border, false);
-                }
-            }
+            OnPropertyChanged(nameof(IsCurrentDate));
         }
 
-        private void UpdateContextMenu(Border cell, bool isCurrentDate)
-        {
-            var contextMenu = cell.ContextMenu;
-            var removeColorMenuItem = contextMenu.Items[contextMenu.Items.Count - 1] as MenuItem;
-            if (removeColorMenuItem != null)
-            {
-                removeColorMenuItem.Visibility = cell.Background != Brushes.White && !isCurrentDate ? Visibility.Visible : Visibility.Collapsed;
-            }
-        }
-
+        // Property to check if the selected date is today
         public bool IsCurrentDate
         {
             get { return DateTime.Today == _currentDate; }
