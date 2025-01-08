@@ -5,76 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="CalendarWindow" WindowState="Maximized" Background="#f7f7f7">
+        Title="ТРЗORAK Календар" WindowState="Maximized" Background="#F0F4FA">
 
     <Window.Resources>
-        <!-- Style for Calendar Cells -->
-        <Style x:Key="CalendarCellStyle" TargetType="Border">
-            <Setter Property="Background" Value="White" />
-            <Setter Property="BorderBrush" Value="#E0E0E0" />
+        <Style x:Key="TaskStyle" TargetType="Border">
+    <Setter Property="Background" Value="#E3F2FD" />
+    <Setter Property="BorderBrush" Value="#4A90E2" />
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="Margin" Value="5" />
+    <Setter Property="Padding" Value="10" />
+    <Setter Property="CornerRadius" Value="5" />
+    <Setter Property="Effect">
+        <Setter.Value>
+            <DropShadowEffect Color="#999999" Opacity="0.2" BlurRadius="8" />
+        </Setter.Value>
+    </Setter>
+</Style>
+
+        <!-- Style for Calendar Day Cells -->
+        <Style x:Key="CalendarDayStyle" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#DADADA" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Margin" Value="3" />
-            <Setter Property="CornerRadius" Value="12" />
-            <Setter Property="Padding" Value="5" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10" />
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="2" Opacity="0.3" BlurRadius="5" />
+                    <DropShadowEffect Color="#000000" Opacity="0.1" BlurRadius="5" />
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <!-- Hover effect with color change -->
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#E3F2FD" />
-                    <Setter Property="Cursor" Value="Hand"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
-        <!-- Event Badge Style (Colored Dots for Events) -->
-        <Style x:Key="EventBadgeStyle" TargetType="Ellipse">
-            <Setter Property="Width" Value="10" />
-            <Setter Property="Height" Value="10" />
-            <Setter Property="Fill" Value="#FF6F61" />
-            <!-- Default red color -->
-            <Setter Property="Margin" Value="0,2" />
-        </Style>
-
-        <!-- ComboBox style for Year and Month -->
-        <Style x:Key="StyledComboBox" TargetType="ComboBox">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="Margin" Value="10,0" />
-            <Setter Property="BorderBrush" Value="#2196F3" />
+        <!-- Styles for Task Categories -->
+        <Style x:Key="PersonalTaskStyle" TargetType="Border">
+            <Setter Property="Background" Value="#FFD1DC" />
+            <Setter Property="BorderBrush" Value="#FF5C77" />
             <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="CornerRadius" Value="5" />
         </Style>
+
+        <Style x:Key="WorkTaskStyle" TargetType="Border">
+            <Setter Property="Background" Value="#D1F0FF" />
+            <Setter Property="BorderBrush" Value="#5C9DFF" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+
+        <Style x:Key="UrgentTaskStyle" TargetType="Border">
+            <Setter Property="Background" Value="#FFD9B3" />
+            <Setter Property="BorderBrush" Value="#FF6E00" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+
     </Window.Resources>
 
-    <Grid Margin="20">
-        <!-- Year and Month Selection -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <ComboBox x:Name="YearComboBox" Width="150" Height="45" Style="{StaticResource StyledComboBox}" SelectionChanged="YearOrMonthChanged"/>
-            <ComboBox x:Name="MonthComboBox" Width="150" Height="45" Style="{StaticResource StyledComboBox}" SelectionChanged="YearOrMonthChanged"/>
-        </StackPanel>
+    <DockPanel Margin="20">
+        <!-- Header Section -->
+        <TextBlock Text="ТРЗORAK Календар" FontSize="28" FontWeight="Bold" Foreground="#2C3E50" DockPanel.Dock="Top" Margin="0,0,0,20" />
 
         <!-- Calendar Grid -->
-        <Grid x:Name="CalendarGrid" Margin="0,60,20,20">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+
+            <!-- Day Headers -->
+            <UniformGrid Rows="1" Columns="7" Grid.Row="0">
+                <TextBlock Text="Sunday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Monday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Tuesday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Wednesday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Thursday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Friday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Saturday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+            </UniformGrid>
+
+            <!-- Calendar Days -->
+            <UniformGrid x:Name="CalendarGrid" Rows="6" Columns="7" Grid.Row="1" Margin="5">
+                <!-- Day cells will be dynamically added in the code-behind -->
+            </UniformGrid>
         </Grid>
-    </Grid>
+    </DockPanel>
 </Window>

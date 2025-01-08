@@ -253,6 +253,9 @@
     <Compile Include="SurveyHRWindow.xaml.cs">
       <DependentUpon>SurveyHRWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TaskInputDialog.xaml.cs">
+      <DependentUpon>TaskInputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TopicsUserControl.xaml.cs">
       <DependentUpon>TopicsUserControl.xaml</DependentUpon>
     </Compile>
@@ -471,6 +474,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SurveyHRWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskInputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

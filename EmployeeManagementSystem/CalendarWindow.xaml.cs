@@ -1,228 +1,233 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
-using System.Collections.Generic;
-using System.Windows.Shapes;
 
 namespace EmployeeManagementSystem
 {
-    public partial class CalendarWindow : Window, INotifyPropertyChanged
+    public partial class CalendarWindow : Window
     {
-        private DateTime _currentDate;
-        private Dictionary<DateTime, string> _events;
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        private DateTime _currentDate = DateTime.Now; 
+        private DateTime _lastClickTime; 
 
         public CalendarWindow()
         {
             InitializeComponent();
-            PopulateYearAndMonthComboBoxes();
-            _currentDate = DateTime.Now;
-            _events = new Dictionary<DateTime, string>(); // Initialize events dictionary
-            DataContext = this;
-            CreateCalendar(_currentDate);
+            GenerateCalendar();
         }
 
-        // Notify property change for dynamic UI updates
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        // Generate the calendar for the current month
+        private void GenerateCalendar()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            DateTime firstDayOfMonth = new DateTime(_currentDate.Year, _currentDate.Month, 1);
+            int daysInMonth = DateTime.DaysInMonth(_currentDate.Year, _currentDate.Month);
+            int startDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
 
-        // Populate year and month ComboBoxes
-        private void PopulateYearAndMonthComboBoxes()
-        {
-            int currentYear = DateTime.Now.Year;
-            for (int year = currentYear; year <= currentYear + 2; year++)
+            // Clear the grid before generating days
+            CalendarGrid.Children.Clear();
+
+            // Add empty cells for days before the first day of the month
+            for (int i = 0; i < startDayOfWeek; i++)
             {
-                YearComboBox.Items.Add(year);
-            }
-            YearComboBox.SelectedIndex = 0; // Default to current year
-
-            for (int month = 1; month <= 12; month++)
-            {
-                MonthComboBox.Items.Add(new DateTime(1, month, 1).ToString("MMMM"));
-            }
-            MonthComboBox.SelectedIndex = DateTime.Now.Month - 1; // Default to current month
-        }
-
-        // Event handler for year or month changes
-        private void YearOrMonthChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (YearComboBox.SelectedItem != null && MonthComboBox.SelectedItem != null)
-            {
-                int year = (int)YearComboBox.SelectedItem;
-                int month = MonthComboBox.SelectedIndex + 1;
-                _currentDate = new DateTime(year, month, 1);
-                CreateCalendar(_currentDate);
-                UpdateCurrentDate();
-            }
-        }
-
-        // Create the calendar grid dynamically
-        private void CreateCalendar(DateTime date)
-        {
-            CalendarGrid.Children.Clear(); // Clear previous cells
-
-            if (_events == null)  // Ensure the _events dictionary is initialized
-            {
-                _events = new Dictionary<DateTime, string>(); // Initialize it if it is null
+                CalendarGrid.Children.Add(CreateEmptyDayCell());
             }
 
-            int daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
-            DateTime firstDayOfMonth = new DateTime(date.Year, date.Month, 1);
-            int startDay = (int)firstDayOfMonth.DayOfWeek;
-
-            int row = 0;
-            int col = startDay;
-
+            // Add cells for each day of the month
             for (int day = 1; day <= daysInMonth; day++)
             {
-                var cell = new Border
-                {
-                    Style = (Style)this.Resources["CalendarCellStyle"],
-                    Background = Brushes.White
-                };
-
-                var cellContent = new StackPanel
-                {
-                    Orientation = Orientation.Vertical,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center
-                };
-
-                var dateText = new TextBlock
-                {
-                    Text = day.ToString(),
-                    Style = (Style)this.Resources["DayTextStyle"]
-                };
-
-                cellContent.Children.Add(dateText);
-
-                // Check if there are events for the current day and display the indicator (colored dot)
-                DateTime eventDate = date.AddDays(day - 1); // Calculate the exact date
-                if (_events.ContainsKey(eventDate))
-                {
-                    var eventIndicator = new Ellipse
-                    {
-                        Style = (Style)this.Resources["EventBadgeStyle"],
-                        Fill = Brushes.Green, // You can customize the color for events
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center
-                    };
-                    cellContent.Children.Add(eventIndicator);
-                }
-
-                cell.Child = cellContent;
-
-                // Highlight today’s date
-                if (date.Year == DateTime.Now.Year && date.Month == DateTime.Now.Month && day == DateTime.Now.Day)
-                {
-                    cell.Background = Brushes.LightSteelBlue; // Light color for today's date
-                }
-
-                // Context menu for adding/editing/removing events
-                var contextMenu = new ContextMenu();
-
-                var addEventMenuItem = new MenuItem { Header = "Add Event" };
-                addEventMenuItem.Click += (s, e) => ShowAddEventDialog(eventDate, day, cell);
-                contextMenu.Items.Add(addEventMenuItem);
-
-                if (_events.ContainsKey(eventDate))
-                {
-                    var editEventMenuItem = new MenuItem { Header = "Edit Event" };
-                    editEventMenuItem.Click += (s, e) => ShowAddEventDialog(eventDate, day, cell);
-                    contextMenu.Items.Add(editEventMenuItem);
-                }
-
-                var removeEventMenuItem = new MenuItem { Header = "Remove Event" };
-                removeEventMenuItem.Click += (s, e) => RemoveEvent(eventDate);
-                contextMenu.Items.Add(removeEventMenuItem);
-
-                cell.ContextMenu = contextMenu;
-
-                Grid.SetRow(cell, row);
-                Grid.SetColumn(cell, col);
-                CalendarGrid.Children.Add(cell);
-
-                col++;
-                if (col > 6)
-                {
-                    col = 0;
-                    row++;
-                }
+                var dayCell = CreateDayCell(day);
+                CalendarGrid.Children.Add(dayCell);
             }
         }
 
-        // Show dialog for adding/editing events
-        private void ShowAddEventDialog(DateTime date, int day, Border cell)
+        // Create an empty cell for padding before the first day of the month
+        private Border CreateEmptyDayCell()
         {
-            var eventDialog = new Window
+            return new Border
             {
-                Title = "Add/Edit Event",
-                Width = 400,
-                Height = 250,
-                WindowStartupLocation = WindowStartupLocation.CenterScreen
+                Style = (Style)FindResource("CalendarDayStyle"),
+                Background = new SolidColorBrush(Color.FromRgb(240, 240, 240))
             };
+        }
+
+        // Create a cell for a specific day
+        private Border CreateDayCell(int day)
+        {
+            var dayCell = new Border
+            {
+                Style = (Style)FindResource("CalendarDayStyle"),
+                Tag = day 
+            };
+
+            // Highlight the current day
+            if (day == _currentDate.Day)
+            {
+                dayCell.Background = new SolidColorBrush(Color.FromRgb(230, 245, 255)); // Light blue background
+                dayCell.BorderBrush = new SolidColorBrush(Color.FromRgb(33, 150, 243)); // Blue border
+                dayCell.BorderThickness = new Thickness(2);
+            }
 
             var stackPanel = new StackPanel();
-            var textBox = new TextBox
+            stackPanel.Children.Add(new TextBlock
             {
-                AcceptsReturn = true,
-                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                Width = 350,
-                Height = 150,
-                Margin = new Thickness(10),
-                Text = _events.ContainsKey(date) ? _events[date] : ""
+                Text = day.ToString(),
+                FontWeight = FontWeights.Bold,
+                FontSize = 16
+            });
+
+            var taskContainer = new ItemsControl
+            {
+                AllowDrop = true
             };
 
-            var saveButton = new Button { Content = "Save", Margin = new Thickness(10) };
-            saveButton.Click += (s, e) =>
-            {
-                var eventText = textBox.Text;
-                if (string.IsNullOrWhiteSpace(eventText))
-                {
-                    _events.Remove(date); // Remove the event if the text is empty
-                }
-                else
-                {
-                    _events[date] = eventText; // Add or update the event
-                }
+            // Add context menu for right-click
+            var contextMenu = new ContextMenu();
 
-                eventDialog.Close();
-                CreateCalendar(_currentDate); // Refresh the calendar to reflect changes
-            };
+            var addTaskMenuItem = new MenuItem { Header = "Добави бележка" };
+            addTaskMenuItem.Click += (s, e) => AddTask(day, taskContainer);
+            contextMenu.Items.Add(addTaskMenuItem);
 
-            stackPanel.Children.Add(textBox);
-            stackPanel.Children.Add(saveButton);
+            var deleteTaskMenuItem = new MenuItem { Header = "Изтрий всички бележки" };
+            deleteTaskMenuItem.Click += (s, e) => taskContainer.Items.Clear();
+            contextMenu.Items.Add(deleteTaskMenuItem);
 
-            eventDialog.Content = stackPanel;
-            eventDialog.ShowDialog();
+            dayCell.ContextMenu = contextMenu;
+
+            stackPanel.Children.Add(taskContainer);
+            dayCell.Child = stackPanel;
+
+            return dayCell;
         }
 
-        // Remove an event
-        private void RemoveEvent(DateTime date)
+        // Add a task to a specific day
+        private void AddTask(int day, ItemsControl taskContainer)
         {
-            if (_events.ContainsKey(date))
+            // Show input dialog for task description
+            string taskText = Microsoft.VisualBasic.Interaction.InputBox($"Добави бележка към дата: {day} {_currentDate:MMMM yyyy}:", "Добави бележка", "");
+            if (string.IsNullOrWhiteSpace(taskText)) return;
+
+            // Create a popup window to select category
+            Window categorySelector = new Window
             {
-                _events.Remove(date);
-                CreateCalendar(_currentDate); // Refresh the calendar after removal
+                Title = "Избери категория",
+                Width = 300,
+                Height = 200,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                ResizeMode = ResizeMode.NoResize,
+                Owner = this
+            };
+
+            var panel = new StackPanel { Margin = new Thickness(10) };
+
+            // Category Dropdown
+            var categoryDropdown = new ComboBox
+            {
+                Width = 200,
+                Margin = new Thickness(0, 0, 0, 10),
+                ItemsSource = new string[] { "Лично", "Работно", "Спешно работно" },
+                SelectedIndex = 0
+            };
+            panel.Children.Add(categoryDropdown);
+
+            var okButton = new Button
+            {
+                Content = "OK",
+                Width = 100,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+            panel.Children.Add(okButton);
+
+            categorySelector.Content = panel;
+
+            // Close popup and proceed with selected category
+            okButton.Click += (s, e) =>
+            {
+                string selectedCategory = categoryDropdown.SelectedItem.ToString();
+                AddTaskToContainer(taskContainer, taskText, selectedCategory);
+                categorySelector.Close();
+            };
+
+            categorySelector.ShowDialog();
+        }
+
+        private void AddTaskToContainer(ItemsControl taskContainer, string taskText, string category)
+        {
+            // Assign a style based on the category
+            string styleKey;
+            switch (category)
+            {
+                case "Лично":
+                    styleKey = "PersonalTaskStyle";
+                    break;
+                case "Работно":
+                    styleKey = "WorkTaskStyle";
+                    break;
+                case "Спешно работно":
+                    styleKey = "UrgentTaskStyle";
+                    break;
+                default:
+                    styleKey = "TaskStyle"; 
+                    break;
+            }
+
+            // Create a task element
+            var task = new Border
+            {
+                Style = (Style)FindResource(styleKey),
+                Child = new TextBlock { Text = taskText }
+            };
+
+            // Enable drag-and-drop functionality
+            task.PreviewMouseMove += Task_PreviewMouseMove;
+            task.MouseLeftButtonUp += (s, e) => HandleMouseClick(task);
+
+            taskContainer.Items.Add(task);
+        }
+
+        // Detect single and double-clicks
+        private void HandleMouseClick(Border task)
+        {
+            DateTime now = DateTime.Now;
+            if ((now - _lastClickTime).TotalMilliseconds < 500)
+            {
+                EditTask(task); 
+            }
+            _lastClickTime = now;
+        }
+
+        // Edit a task on double-click
+        private void EditTask(Border task)
+        {
+            if (task.Child is TextBlock textBlock)
+            {
+                string updatedText = Microsoft.VisualBasic.Interaction.InputBox("Edit Task:", "Edit Task", textBlock.Text);
+                if (!string.IsNullOrWhiteSpace(updatedText))
+                {
+                    textBlock.Text = updatedText;
+                }
             }
         }
 
-        // Method to update current date property
-        private void UpdateCurrentDate()
+        // Handle dragging tasks
+        private void Task_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            OnPropertyChanged(nameof(IsCurrentDate));
+            if (e.LeftButton == MouseButtonState.Pressed && sender is Border task)
+            {
+                DragDrop.DoDragDrop(task, task, DragDropEffects.Move);
+            }
         }
 
-        // Property to check if the selected date is today
-        public bool IsCurrentDate
+        // Handle dropping tasks on a day cell
+        private void Task_Drop(object sender, DragEventArgs e)
         {
-            get { return DateTime.Today == _currentDate; }
+            if (e.Data.GetData(typeof(Border)) is Border task && sender is ItemsControl targetContainer)
+            {
+                var parent = VisualTreeHelper.GetParent(task) as ItemsControl;
+                parent?.Items.Remove(task);
+
+                targetContainer.Items.Add(task);
+            }
         }
     }
 }
