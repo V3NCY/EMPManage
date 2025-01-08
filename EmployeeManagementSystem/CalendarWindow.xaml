@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="Kanban Calendar" WindowState="Maximized" Background="#F0F4FA" d:DesignHeight="174.983">
+        Title="ТРЗORAK Календар" WindowState="Maximized" Background="#F0F4FA" d:DesignHeight="174.983">
 
     <Window.Resources>
         <!-- Style for Calendar Day Cells -->
@@ -67,7 +67,7 @@
     <DockPanel Margin="20">
         <!-- Header Section -->
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,20">
-            <TextBlock Text="ТРЗОRAK Calendar" FontSize="28" FontWeight="Bold" Foreground="#2C3E50" />
+            <TextBlock Text="ТРЗОRAK Календар" FontSize="28" FontWeight="Bold" Foreground="#2C3E50" />
             <TextBlock Text="A task-focused calendar to organize your personal, work, and urgent priorities." 
                        FontSize="14" Foreground="#6C757D" Margin="0,5,0,0" />
         </StackPanel>
@@ -93,13 +93,13 @@
 
             <!-- Day Headers -->
             <UniformGrid Rows="1" Columns="7" Grid.Row="0">
-                <TextBlock Text="Sunday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
-                <TextBlock Text="Monday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
-                <TextBlock Text="Tuesday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
-                <TextBlock Text="Wednesday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
-                <TextBlock Text="Thursday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
-                <TextBlock Text="Friday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
-                <TextBlock Text="Saturday" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Неделя" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="red" />
+                <TextBlock Text="Понеделник" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Вторник" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Сряда" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Четвъртък" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Петък" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#4A90E2" />
+                <TextBlock Text="Събота" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="red" />
             </UniformGrid>
 
             <!-- Calendar Days -->

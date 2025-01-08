@@ -98,19 +98,19 @@ namespace EmployeeManagementSystem
             // Add context menu for right-click
             var contextMenu = new ContextMenu();
 
-            var viewTasksMenuItem = new MenuItem { Header = "View Tasks" };
+            var viewTasksMenuItem = new MenuItem { Header = "Виж бележките" };
             viewTasksMenuItem.Click += ViewTasks_Click;
             contextMenu.Items.Add(viewTasksMenuItem);
 
-            var addTaskMenuItem = new MenuItem { Header = "Add Task" };
+            var addTaskMenuItem = new MenuItem { Header = "Добави бележка" };
             addTaskMenuItem.Click += AddTask_Click;
             contextMenu.Items.Add(addTaskMenuItem);
 
-            var editTasksMenuItem = new MenuItem { Header = "Edit Tasks" };
+            var editTasksMenuItem = new MenuItem { Header = "Редактирай" };
             editTasksMenuItem.Click += EditTasks_Click;
             contextMenu.Items.Add(editTasksMenuItem);
 
-            var deleteTaskMenuItem = new MenuItem { Header = "Delete All Tasks" };
+            var deleteTaskMenuItem = new MenuItem { Header = "Изтрий всички бележки" };
             deleteTaskMenuItem.Click += DeleteTasks_Click;
             contextMenu.Items.Add(deleteTaskMenuItem);
 
@@ -139,11 +139,11 @@ namespace EmployeeManagementSystem
 
                     if (tasks.Count > 0)
                     {
-                        MessageBox.Show(string.Join(Environment.NewLine, tasks), $"Tasks for Day {dayCell.Tag}", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(string.Join(Environment.NewLine, tasks), $"Бележки за ден: {dayCell.Tag}", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        MessageBox.Show("No tasks for this day.", $"Tasks for Day {dayCell.Tag}", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Няма намерени бележки за този ден.", $"Бележки за ден: {dayCell.Tag}", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
@@ -170,7 +170,7 @@ namespace EmployeeManagementSystem
                     {
                         if (item is Border taskBorder && taskBorder.Child is TextBlock taskText)
                         {
-                            string updatedText = Microsoft.VisualBasic.Interaction.InputBox("Edit Task:", "Edit Task", taskText.Text);
+                            string updatedText = Microsoft.VisualBasic.Interaction.InputBox("Редактирай бележка:", "Редактирай бележка", taskText.Text);
                             if (!string.IsNullOrWhiteSpace(updatedText))
                             {
                                 taskText.Text = updatedText;
@@ -189,7 +189,7 @@ namespace EmployeeManagementSystem
                 {
                     taskContainer.Items.Clear();
                     _tasks.Remove((int)dayCell.Tag);
-                    MessageBox.Show("All tasks have been deleted.", "Delete Tasks");
+                    MessageBox.Show("Всички бележки са изтрити успешно.", "Изтрий бележки");
                 }
             }
         }
@@ -198,7 +198,7 @@ namespace EmployeeManagementSystem
         private void AddTask(int day, ItemsControl taskContainer)
         {
             // Show input dialog for task description
-            string taskText = Microsoft.VisualBasic.Interaction.InputBox($"Add a note for {day} {_currentDate:MMMM yyyy}:", "Add Task", "");
+            string taskText = Microsoft.VisualBasic.Interaction.InputBox($"Добави бележка към ден: {day} {_currentDate:MMMM yyyy}:", "Add Task", "");
             if (string.IsNullOrWhiteSpace(taskText)) return;
 
             // Prompt category selection dynamically
@@ -220,7 +220,7 @@ namespace EmployeeManagementSystem
             // Popup dialog to select category
             Window categoryWindow = new Window
             {
-                Title = "Select Task Category",
+                Title = "Избери категория",
                 Width = 300,
                 Height = 200,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
@@ -232,7 +232,7 @@ namespace EmployeeManagementSystem
 
             ListBox categoryList = new ListBox
             {
-                ItemsSource = new[] { "Personal", "Work", "Urgent" },
+                ItemsSource = new[] { "Лични", "Работни", "Спешни работни" },
                 Margin = new Thickness(0, 0, 0, 10)
             };
             categoryList.SelectedIndex = 0;
@@ -257,15 +257,15 @@ namespace EmployeeManagementSystem
         {
             // Assign a style based on the category
             string styleKey;
-            if (category == "Personal")
+            if (category == "Лични")
             {
                 styleKey = "PersonalTaskStyle";
             }
-            else if (category == "Work")
+            else if (category == "Работни")
             {
                 styleKey = "WorkTaskStyle";
             }
-            else if (category == "Urgent")
+            else if (category == "Спешни работни")
             {
                 styleKey = "UrgentTaskStyle";
             }
@@ -304,7 +304,7 @@ namespace EmployeeManagementSystem
         {
             if (task.Child is TextBlock textBlock)
             {
-                string updatedText = Microsoft.VisualBasic.Interaction.InputBox("Edit Task:", "Edit Task", textBlock.Text);
+                string updatedText = Microsoft.VisualBasic.Interaction.InputBox("Редактирай бележка:", "Редактирай бележка", textBlock.Text);
                 if (!string.IsNullOrWhiteSpace(updatedText))
                 {
                     textBlock.Text = updatedText;
