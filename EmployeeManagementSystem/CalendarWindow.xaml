@@ -5,23 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementSystem"
         mc:Ignorable="d"
-        Title="ТРЗORAK Календар" WindowState="Maximized" Background="#F0F4FA">
+        Title="Kanban Calendar" WindowState="Maximized" Background="#F0F4FA" d:DesignHeight="174.983">
 
     <Window.Resources>
-        <Style x:Key="TaskStyle" TargetType="Border">
-    <Setter Property="Background" Value="#E3F2FD" />
-    <Setter Property="BorderBrush" Value="#4A90E2" />
-    <Setter Property="BorderThickness" Value="2" />
-    <Setter Property="Margin" Value="5" />
-    <Setter Property="Padding" Value="10" />
-    <Setter Property="CornerRadius" Value="5" />
-    <Setter Property="Effect">
-        <Setter.Value>
-            <DropShadowEffect Color="#999999" Opacity="0.2" BlurRadius="8" />
-        </Setter.Value>
-    </Setter>
-</Style>
-
         <!-- Style for Calendar Day Cells -->
         <Style x:Key="CalendarDayStyle" TargetType="Border">
             <Setter Property="Background" Value="#FFFFFF" />
@@ -35,6 +21,17 @@
                     <DropShadowEffect Color="#000000" Opacity="0.1" BlurRadius="5" />
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F0F8FF" />
+                    <Setter Property="BorderBrush" Value="#1E90FF" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#1E90FF" Opacity="0.3" BlurRadius="10" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <!-- Styles for Task Categories -->
@@ -69,7 +66,23 @@
 
     <DockPanel Margin="20">
         <!-- Header Section -->
-        <TextBlock Text="ТРЗORAK Календар" FontSize="28" FontWeight="Bold" Foreground="#2C3E50" DockPanel.Dock="Top" Margin="0,0,0,20" />
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,20">
+            <TextBlock Text="ТРЗОRAK Calendar" FontSize="28" FontWeight="Bold" Foreground="#2C3E50" />
+            <TextBlock Text="A task-focused calendar to organize your personal, work, and urgent priorities." 
+                       FontSize="14" Foreground="#6C757D" Margin="0,5,0,0" />
+        </StackPanel>
+
+        <!-- Legend Section -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
+            <Border Background="#FFD1DC" Width="20" Height="20" Margin="5" CornerRadius="3" />
+            <TextBlock Text="Personal" VerticalAlignment="Center" Margin="5,0,15,0" />
+
+            <Border Background="#D1F0FF" Width="20" Height="20" Margin="5" CornerRadius="3" />
+            <TextBlock Text="Work" VerticalAlignment="Center" Margin="5,0,15,0" />
+
+            <Border Background="#FFD9B3" Width="20" Height="20" Margin="5" CornerRadius="3" />
+            <TextBlock Text="Urgent" VerticalAlignment="Center" Margin="5,0,15,0" />
+        </StackPanel>
 
         <!-- Calendar Grid -->
         <Grid>
@@ -92,7 +105,16 @@
             <!-- Calendar Days -->
             <UniformGrid x:Name="CalendarGrid" Rows="6" Columns="7" Grid.Row="1" Margin="5">
                 <!-- Day cells will be dynamically added in the code-behind -->
+                <UniformGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="View Tasks" Click="ViewTasks_Click" />
+                        <MenuItem Header="Add Task" Click="AddTask_Click" />
+                        <MenuItem Header="Edit Tasks" Click="EditTasks_Click" />
+                        <MenuItem Header="Delete Tasks" Click="DeleteTasks_Click" />
+                    </ContextMenu>
+                </UniformGrid.ContextMenu>
             </UniformGrid>
         </Grid>
+
     </DockPanel>
 </Window>

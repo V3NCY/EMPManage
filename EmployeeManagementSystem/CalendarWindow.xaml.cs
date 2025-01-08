@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,8 +9,8 @@ namespace EmployeeManagementSystem
 {
     public partial class CalendarWindow : Window
     {
-        private DateTime _currentDate = DateTime.Now; 
-        private DateTime _lastClickTime; 
+        private DateTime _currentDate = DateTime.Now;
+        private DateTime _lastClickTime;
 
         public CalendarWindow()
         {
@@ -57,7 +58,7 @@ namespace EmployeeManagementSystem
             var dayCell = new Border
             {
                 Style = (Style)FindResource("CalendarDayStyle"),
-                Tag = day 
+                Tag = day
             };
 
             // Highlight the current day
@@ -84,12 +85,20 @@ namespace EmployeeManagementSystem
             // Add context menu for right-click
             var contextMenu = new ContextMenu();
 
-            var addTaskMenuItem = new MenuItem { Header = "Добави бележка" };
-            addTaskMenuItem.Click += (s, e) => AddTask(day, taskContainer);
+            var viewTasksMenuItem = new MenuItem { Header = "View Tasks" };
+            viewTasksMenuItem.Click += ViewTasks_Click;
+            contextMenu.Items.Add(viewTasksMenuItem);
+
+            var addTaskMenuItem = new MenuItem { Header = "Add Task" };
+            addTaskMenuItem.Click += AddTask_Click;
             contextMenu.Items.Add(addTaskMenuItem);
 
-            var deleteTaskMenuItem = new MenuItem { Header = "Изтрий всички бележки" };
-            deleteTaskMenuItem.Click += (s, e) => taskContainer.Items.Clear();
+            var editTasksMenuItem = new MenuItem { Header = "Edit Tasks" };
+            editTasksMenuItem.Click += EditTasks_Click;
+            contextMenu.Items.Add(editTasksMenuItem);
+
+            var deleteTaskMenuItem = new MenuItem { Header = "Delete All Tasks" };
+            deleteTaskMenuItem.Click += DeleteTasks_Click;
             contextMenu.Items.Add(deleteTaskMenuItem);
 
             dayCell.ContextMenu = contextMenu;
@@ -100,17 +109,99 @@ namespace EmployeeManagementSystem
             return dayCell;
         }
 
+        private void ViewTasks_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu && contextMenu.PlacementTarget is Border dayCell)
+            {
+                if (dayCell.Child is StackPanel stackPanel && stackPanel.Children[1] is ItemsControl taskContainer)
+                {
+                    var tasks = new List<string>();
+                    foreach (var item in taskContainer.Items)
+                    {
+                        if (item is Border taskBorder && taskBorder.Child is TextBlock taskText)
+                        {
+                            tasks.Add(taskText.Text);
+                        }
+                    }
+
+                    if (tasks.Count > 0)
+                    {
+                        MessageBox.Show(string.Join(Environment.NewLine, tasks), $"Tasks for Day {dayCell.Tag}", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No tasks for this day.", $"Tasks for Day {dayCell.Tag}", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+        }
+
+
+        private void AddTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu && contextMenu.PlacementTarget is Border dayCell)
+            {
+                if (dayCell.Child is StackPanel stackPanel && stackPanel.Children[1] is ItemsControl taskContainer)
+                {
+                    AddTask((int)dayCell.Tag, taskContainer);
+                }
+            }
+        }
+
+        private void EditTasks_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu && contextMenu.PlacementTarget is Border dayCell)
+            {
+                if (dayCell.Child is StackPanel stackPanel && stackPanel.Children[1] is ItemsControl taskContainer)
+                {
+                    foreach (var item in taskContainer.Items)
+                    {
+                        if (item is Border taskBorder && taskBorder.Child is TextBlock taskText)
+                        {
+                            string updatedText = Microsoft.VisualBasic.Interaction.InputBox("Edit Task:", "Edit Task", taskText.Text);
+                            if (!string.IsNullOrWhiteSpace(updatedText))
+                            {
+                                taskText.Text = updatedText;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        private void DeleteTasks_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu && contextMenu.PlacementTarget is Border dayCell)
+            {
+                if (dayCell.Child is StackPanel stackPanel && stackPanel.Children[1] is ItemsControl taskContainer)
+                {
+                    taskContainer.Items.Clear();
+                    MessageBox.Show($"All tasks for Day {dayCell.Tag} have been deleted.", "Delete Tasks", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
         // Add a task to a specific day
         private void AddTask(int day, ItemsControl taskContainer)
         {
             // Show input dialog for task description
-            string taskText = Microsoft.VisualBasic.Interaction.InputBox($"Добави бележка към дата: {day} {_currentDate:MMMM yyyy}:", "Добави бележка", "");
+            string taskText = Microsoft.VisualBasic.Interaction.InputBox($"Add a note for {day} {_currentDate:MMMM yyyy}:", "Add Task", "");
             if (string.IsNullOrWhiteSpace(taskText)) return;
 
-            // Create a popup window to select category
-            Window categorySelector = new Window
+            // Prompt category selection dynamically
+            string category = SelectTaskCategory();
+            if (string.IsNullOrWhiteSpace(category)) return;
+
+            AddTaskToContainer(taskContainer, taskText, category);
+        }
+
+        private string SelectTaskCategory()
+        {
+            // Popup dialog to select category
+            Window categoryWindow = new Window
             {
-                Title = "Избери категория",
+                Title = "Select Task Category",
                 Width = 300,
                 Height = 200,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
@@ -118,57 +209,50 @@ namespace EmployeeManagementSystem
                 Owner = this
             };
 
-            var panel = new StackPanel { Margin = new Thickness(10) };
+            StackPanel panel = new StackPanel { Margin = new Thickness(10) };
 
-            // Category Dropdown
-            var categoryDropdown = new ComboBox
+            ListBox categoryList = new ListBox
             {
-                Width = 200,
-                Margin = new Thickness(0, 0, 0, 10),
-                ItemsSource = new string[] { "Лично", "Работно", "Спешно работно" },
-                SelectedIndex = 0
+                ItemsSource = new[] { "Personal", "Work", "Urgent" },
+                Margin = new Thickness(0, 0, 0, 10)
             };
-            panel.Children.Add(categoryDropdown);
+            categoryList.SelectedIndex = 0;
+            panel.Children.Add(categoryList);
 
-            var okButton = new Button
+            Button okButton = new Button
             {
                 Content = "OK",
                 Width = 100,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
+            okButton.Click += (s, e) => categoryWindow.Close();
             panel.Children.Add(okButton);
 
-            categorySelector.Content = panel;
+            categoryWindow.Content = panel;
+            categoryWindow.ShowDialog();
 
-            // Close popup and proceed with selected category
-            okButton.Click += (s, e) =>
-            {
-                string selectedCategory = categoryDropdown.SelectedItem.ToString();
-                AddTaskToContainer(taskContainer, taskText, selectedCategory);
-                categorySelector.Close();
-            };
-
-            categorySelector.ShowDialog();
+            return categoryList.SelectedItem as string;
         }
 
         private void AddTaskToContainer(ItemsControl taskContainer, string taskText, string category)
         {
             // Assign a style based on the category
             string styleKey;
-            switch (category)
+            if (category == "Personal")
             {
-                case "Лично":
-                    styleKey = "PersonalTaskStyle";
-                    break;
-                case "Работно":
-                    styleKey = "WorkTaskStyle";
-                    break;
-                case "Спешно работно":
-                    styleKey = "UrgentTaskStyle";
-                    break;
-                default:
-                    styleKey = "TaskStyle"; 
-                    break;
+                styleKey = "PersonalTaskStyle";
+            }
+            else if (category == "Work")
+            {
+                styleKey = "WorkTaskStyle";
+            }
+            else if (category == "Urgent")
+            {
+                styleKey = "UrgentTaskStyle";
+            }
+            else
+            {
+                styleKey = "TaskStyle";
             }
 
             // Create a task element
@@ -191,7 +275,7 @@ namespace EmployeeManagementSystem
             DateTime now = DateTime.Now;
             if ((now - _lastClickTime).TotalMilliseconds < 500)
             {
-                EditTask(task); 
+                EditTask(task);
             }
             _lastClickTime = now;
         }
