@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace EmployeeManagementSystem
 {
@@ -11,10 +14,12 @@ namespace EmployeeManagementSystem
     {
         private DateTime _currentDate = DateTime.Now;
         private DateTime _lastClickTime;
+        private Dictionary<int, List<TaskModel>> _tasks = new Dictionary<int, List<TaskModel>>();
 
         public CalendarWindow()
         {
             InitializeComponent();
+            LoadTasks();
             GenerateCalendar();
         }
 
@@ -82,6 +87,14 @@ namespace EmployeeManagementSystem
                 AllowDrop = true
             };
 
+            if (_tasks.ContainsKey(day))
+            {
+                foreach (var task in _tasks[day])
+                {
+                    AddTaskToContainer(taskContainer, task.Text, task.Category);
+                }
+            }
+
             // Add context menu for right-click
             var contextMenu = new ContextMenu();
 
@@ -136,7 +149,6 @@ namespace EmployeeManagementSystem
             }
         }
 
-
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
             if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu && contextMenu.PlacementTarget is Border dayCell)
@@ -169,7 +181,6 @@ namespace EmployeeManagementSystem
             }
         }
 
-
         private void DeleteTasks_Click(object sender, RoutedEventArgs e)
         {
             if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu && contextMenu.PlacementTarget is Border dayCell)
@@ -177,7 +188,8 @@ namespace EmployeeManagementSystem
                 if (dayCell.Child is StackPanel stackPanel && stackPanel.Children[1] is ItemsControl taskContainer)
                 {
                     taskContainer.Items.Clear();
-                    MessageBox.Show($"All tasks for Day {dayCell.Tag} have been deleted.", "Delete Tasks", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _tasks.Remove((int)dayCell.Tag);
+                    MessageBox.Show("All tasks have been deleted.", "Delete Tasks");
                 }
             }
         }
@@ -194,6 +206,13 @@ namespace EmployeeManagementSystem
             if (string.IsNullOrWhiteSpace(category)) return;
 
             AddTaskToContainer(taskContainer, taskText, category);
+
+            if (!_tasks.ContainsKey(day))
+            {
+                _tasks[day] = new List<TaskModel>();
+            }
+
+            _tasks[day].Add(new TaskModel { Day = day, Text = taskText, Category = category });
         }
 
         private string SelectTaskCategory()
@@ -313,5 +332,50 @@ namespace EmployeeManagementSystem
                 targetContainer.Items.Add(task);
             }
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            string filePath = "tasks.json";
+            var tasksToSave = new List<TaskModel>();
+
+            foreach (var day in _tasks)
+            {
+                tasksToSave.AddRange(day.Value);
+            }
+
+            string json = JsonConvert.SerializeObject(tasksToSave);
+            File.WriteAllText(filePath, json);
+
+        }
+
+        private void LoadTasks()
+        {
+            string filePath = "tasks.json";
+
+            if (File.Exists(filePath))
+            {
+                string json = File.ReadAllText(filePath);
+                var loadedTasks = JsonConvert.DeserializeObject<List<TaskModel>>(json);
+
+
+                foreach (var task in loadedTasks)
+                {
+                    if (!_tasks.ContainsKey(task.Day))
+                    {
+                        _tasks[task.Day] = new List<TaskModel>();
+                    }
+                    _tasks[task.Day].Add(task);
+                }
+            }
+        }
+    }
+
+    public class TaskModel
+    {
+        public int Day { get; set; }
+        public string Text { get; set; }
+        public string Category { get; set; }
     }
 }
