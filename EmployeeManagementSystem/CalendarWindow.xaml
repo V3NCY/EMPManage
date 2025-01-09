@@ -54,8 +54,8 @@
         </Style>
 
         <Style x:Key="UrgentTaskStyle" TargetType="Border">
-            <Setter Property="Background" Value="#FFD9B3" />
-            <Setter Property="BorderBrush" Value="#FF6E00" />
+            <Setter Property="Background" Value="#ff9793" />
+            <Setter Property="BorderBrush" Value="#FFD1DC" />
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="Margin" Value="5" />
             <Setter Property="Padding" Value="10" />
@@ -75,13 +75,13 @@
         <!-- Legend Section -->
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
             <Border Background="#FFD1DC" Width="20" Height="20" Margin="5" CornerRadius="3" />
-            <TextBlock Text="Personal" VerticalAlignment="Center" Margin="5,0,15,0" />
+            <TextBlock Text="Лично" VerticalAlignment="Center" Margin="5,0,15,0" />
 
             <Border Background="#D1F0FF" Width="20" Height="20" Margin="5" CornerRadius="3" />
-            <TextBlock Text="Work" VerticalAlignment="Center" Margin="5,0,15,0" />
+            <TextBlock Text="Работно" VerticalAlignment="Center" Margin="5,0,15,0" />
 
-            <Border Background="#FFD9B3" Width="20" Height="20" Margin="5" CornerRadius="3" />
-            <TextBlock Text="Urgent" VerticalAlignment="Center" Margin="5,0,15,0" />
+            <Border Background="#ff9793" Width="20" Height="20" Margin="5" CornerRadius="3" />
+            <TextBlock Text="Спешно работно" VerticalAlignment="Center" Margin="5,0,15,0" />
         </StackPanel>
 
         <!-- Calendar Grid -->
