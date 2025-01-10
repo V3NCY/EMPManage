@@ -152,7 +152,7 @@
     <Compile Include="AddVehicleWindow.xaml.cs">
       <DependentUpon>AddVehicleWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AdministrativeDepartmentWindow.xaml.cs">
+    <Compile Include="Administration\AdministrativeDepartmentWindow.xaml.cs">
       <DependentUpon>AdministrativeDepartmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AnalysisReportWindow.xaml.cs">
@@ -192,7 +192,7 @@
     <Compile Include="DevDepartmentWindow.xaml.cs">
       <DependentUpon>DevDepartmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DocumentsListWindow.xaml.cs">
+    <Compile Include="Administration\DocumentsListWindow.xaml.cs">
       <DependentUpon>DocumentsListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditEmployeeWindow.xaml.cs">
@@ -326,7 +326,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AdministrativeDepartmentWindow.xaml">
+    <Page Include="Administration\AdministrativeDepartmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -378,7 +378,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DocumentsListWindow.xaml">
+    <Page Include="Administration\DocumentsListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
